@@ -1,26 +1,9 @@
-/*
-fissare massimo numero di rings
-fissare massimo numero di step
-aggiustare slider velocità, deve partire da un minimo
-mostrare la velocità in bpm
-
-fixare problema quando cancelli tutti i rings
-fare più stati e menu a tendina per scegliere stato e nome stato
-
-registrazione canzone generata
-libreria di ritmi/poliritmi
-salvare e caricare lo stato su firebase DA FARE
-METTERE SU GITHUB
-rhythm recognition
-rhythm library
-*/
 import Vue from '../node_modules/vue/dist/vue';
 import vSelect from "../node_modules/vue-select/dist/vue-select";
 import "../node_modules/vue-select/dist/vue-select.css";
 import * as Tone from '../node_modules/tone/build/Tone';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue' // Import Bootstrap an BootstrapVue CSS files (order is important)import 'bootstrap/dist/css/bootstrap.css'import 'bootstrap-vue/dist/bootstrap-vue.css'// Make BootstrapVue available throughout your project
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
-    // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.component("v-select", vSelect);
 
@@ -161,7 +144,6 @@ var app = new Vue({
 
             this.context.stroke();
 
-            //restoring
             this.context.lineWidth = oldLineWidth;
             this.context.lineCap = oldLineCap;
         },
@@ -252,10 +234,7 @@ var app = new Vue({
         },
 
         isInside: function(i, pos) {
-            // http://stackoverflow.com/questions/6270785/how-to-determine-whether-a-point-x-y-is-contained-within-an-arc-section-of-a-c
-            // Angle = arctan(y/x); Radius = sqrt(x * x + y * y);
             var radius = this.distanceBetween2Points(pos, this.center);
-            // we calculate atan only if the radius is OK
             if (radius >= this.minRadius(i) && radius <= this.maxRadius(i)) {
                 var angle = this.angleBetween2Points(this.center, pos);
 
@@ -380,8 +359,6 @@ var app = new Vue({
             else
                 for (var i = 0; i < steps - this.rings[ring].steps; ++i)
                     this.rings[ring].pattern.push(0);
-
-            //this.rings[ring].steps = steps
             Vue.set(this.rings[ring], "steps", steps);
         },
 
@@ -514,13 +491,6 @@ var app = new Vue({
                 }
             }
 
-            /* if (
-                                this.lastStepHighlighted != null &&
-                                this.ringHighlighted != this.lastRingHighlighted
-                              )
-                                this.rings[this.lastRingHighlighted].draw(-1);*/
-
-            // set cursor according to the highlight status
             this.canvas.style.cursor =
                 this.ringHighlighted != null ? "pointer" : "default";
         }
@@ -547,7 +517,6 @@ const audioPack = [{
     }
 ];
 
-//user interaction
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
 
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
