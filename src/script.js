@@ -23,21 +23,6 @@ Vue.use(BootstrapVue)
     // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.component("v-select", vSelect);
-/*
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
-  authDomain: "rhythmwheel.firebaseapp.com",
-  projectId: "rhythmwheel",
-  storageBucket: "rhythmwheel.appspot.com",
-  messagingSenderId: "269684546616",
-  appId: "1:269684546616:web:b0f918b004d3ef00dd5acd"
-};
-
-// Initialize Firebase
-const fApp = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-*/
 
 var app = new Vue({
     el: "#app",
