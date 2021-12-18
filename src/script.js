@@ -5,24 +5,39 @@ aggiustare slider velocità, deve partire da un minimo
 mostrare la velocità in bpm
 
 fixare problema quando cancelli tutti i rings
-fare più stati e menu a tendina per scegliere stato e nome stato
+fixare problema: i nuovi stati non sono visibili subito nel vue-select
+fare più stati e menu a tendina per scegliere stato e nome stato FATTO
 
 registrazione canzone generata
 libreria di ritmi/poliritmi
 salvare e caricare lo stato su firebase DA FARE
-METTERE SU GITHUB
+METTERE SU GITHUB FATTO
 rhythm recognition
-rhythm library
 */
-import Vue from '../node_modules/vue/dist/vue';
-import vSelect from "../node_modules/vue-select/dist/vue-select";
-import "../node_modules/vue-select/dist/vue-select.css";
+import Vue from 'vue';
+import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue' // Import Bootstrap an BootstrapVue CSS files (order is important)import 'bootstrap/dist/css/bootstrap.css'import 'bootstrap-vue/dist/bootstrap-vue.css'// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-    // Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
 Vue.component("v-select", vSelect);
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
+/*
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
+  authDomain: "rhythmwheel.firebaseapp.com",
+  projectId: "rhythmwheel",
+  storageBucket: "rhythmwheel.appspot.com",
+  messagingSenderId: "269684546616",
+  appId: "1:269684546616:web:b0f918b004d3ef00dd5acd"
+};
+
+// Initialize Firebase
+const fApp = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+*/
 
 var app = new Vue({
     el: "#app",
@@ -55,7 +70,10 @@ var app = new Vue({
     },
     methods: {
         getStates: function() {
-            return Object.keys(this.savedState)
+            if (this.savedState.length != 0)
+                return Object.keys(this.savedState)
+            else
+                return []
         },
 
         range: function(start, stop, step) {
