@@ -38,6 +38,9 @@
                     <b-button pill :disabled="stateName == null || stateName.length == 0" v-on:click="saveState(stateName)">
                         <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load2-upload-icon.png" />
                     </b-button>
+                    <b-button pill :disabled="selectedState == null" v-on:click="deleteState(selectedState)">
+                        <img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />
+                    </b-button>
                 </div>
             </div>
             <div class="menu-option-container">
@@ -45,7 +48,7 @@
                 <v-select :options="range(1, this.rings.length + 1, 1)" class="select" v-model="selectedRing" @input="selectRing(selectedRing)">
                 </v-select>
                 <div class="buttons-container">
-                    <b-button pill :disabled="selectedRing == null" v-on:click="deleteRing(selectedRing - 1)">
+                    <b-button pill :disabled="!canDeleteRing(selectedRing)" v-on:click="deleteRing(selectedRing - 1)">
                         <img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />
                     </b-button>
                     <b-button pill v-on:click="addRing(8,0,'red')">
@@ -65,10 +68,10 @@
             </div>
         </div>
         <div class="buttons-container">
-            <b-button pill :disabled="selectedRing == null" v-on:click="changeRingSteps(selectedRing - 1, 1)">
+            <b-button pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
                 <img class="play-image" src="https://img.icons8.com/ios-glyphs/48/000000/plus-math.png" />
             </b-button>
-            <b-button pill :disabled="selectedRing == null || this.rings[selectedRing - 1].steps == 1" v-on:click="changeRingSteps(selectedRing - 1, 0)">
+            <b-button pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
                 <img class="play-image" src="https://img.icons8.com/ios-glyphs/48/000000/minus-math.png" />
             </b-button>
         </div>

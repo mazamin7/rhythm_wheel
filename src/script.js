@@ -79,6 +79,24 @@ var app = new Vue({
             return arr;
         },
 
+        deleteState: function(id) {
+            var index = -1;
+
+            for (var i = 0; i < this.savedState.length; ++i)
+                if (this.savedState[i].id == id)
+                    index = i
+
+            if (index < 0) {
+                alert("error")
+                return
+            }
+
+            this.savedState[index] = null
+            this.savedState.splice(index, 1)
+
+            this.selectedState = null
+        },
+
         saveState: function(name) {
             const id = this.savedState.length
             this.savedState.push({ id: id, name: name, state: [] })
@@ -383,6 +401,14 @@ var app = new Vue({
             return this.playPause;
         },
 
+        canChangeRingSteps: function(ring, mode) {
+            if (ring == null)
+                return false
+            else if (this.rings[ring - 1].steps == 1 && mode == 0)
+                return false
+            return true
+        },
+
         changeRingSteps: function(ring, steps) {
             if (steps == 1) {
                 Vue.set(this.rings[ring], "steps", this.rings[ring].steps + 1);
@@ -439,11 +465,24 @@ var app = new Vue({
             this.selectedColor = this.rings[this.selectedRing - 1].color;
         },
 
+        canDeleteRing: function(ring) {
+            if (ring == null)
+                return false
+            else if (this.rings.length == 0)
+                return false
+            return true
+        },
+
         deleteRing: function(ring) {
+            if (ring == null)
+                return;
+
             this.rings[ring] = null;
             this.players[ring] = null
             this.rings.splice(ring, 1);
             this.players.splice(ring, 1)
+
+            this.selectedRing = null
         },
 
         addRing: function(steps, instrument, color) {
@@ -461,8 +500,9 @@ var app = new Vue({
         draw: function() {
             const maxRadius = this.maxRadius(this.rings.length - 1);
 
+            this.drawClear();
+
             if (this.rings.length > 0) {
-                this.drawClear();
                 this.drawRings();
                 this.drawHand(this.center, this.currentDegree, maxRadius, 10);
             }
