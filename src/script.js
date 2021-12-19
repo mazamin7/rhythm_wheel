@@ -17,27 +17,28 @@ rhythm recognition
 import Vue from 'vue';
 import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
+import 'regenerator-runtime/runtime'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-/*
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
-  authDomain: "rhythmwheel.firebaseapp.com",
-  projectId: "rhythmwheel",
-  storageBucket: "rhythmwheel.appspot.com",
-  messagingSenderId: "269684546616",
-  appId: "1:269684546616:web:b0f918b004d3ef00dd5acd"
+    apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
+    authDomain: "rhythmwheel.firebaseapp.com",
+    projectId: "rhythmwheel",
+    storageBucket: "rhythmwheel.appspot.com",
+    messagingSenderId: "269684546616",
+    appId: "1:269684546616:web:b0f918b004d3ef00dd5acd"
 };
 
 // Initialize Firebase
-const fApp = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-*/
+const fApp = initializeApp(firebaseConfig);
+const db = getFirestore(fApp);
 
 var app = new Vue({
     el: "#app",
