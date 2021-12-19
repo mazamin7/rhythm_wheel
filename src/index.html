@@ -29,16 +29,16 @@
         <div class="menu-container">
             <div class="menu-option-container">
                 <label>States:</label>
-                <v-select :options="savedState" :reduce="state => state.id" label="name" class="select" v-model="selectedState"></v-select>
+                <v-select :options="states" label="name" class="select" v-model="selectedState"></v-select>
                 <input v-model="stateName" placeholder="State name">
                 <div class="buttons-container">
-                    <b-button pill :disabled="selectedState == null" v-on:click="loadState(selectedState)">
+                    <b-button pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings)">
                         <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load-download-icon.png" />
                     </b-button>
-                    <b-button pill :disabled="stateName == null || stateName.length == 0" v-on:click="saveState(stateName)">
+                    <b-button pill :disabled="stateName == null || stateName.trim() == '' " v-on:click="saveState(stateName)">
                         <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load2-upload-icon.png" />
                     </b-button>
-                    <b-button pill :disabled="selectedState == null" v-on:click="deleteState(selectedState)">
+                    <b-button pill :disabled="selectedState == null" v-on:click="deleteState(selectedState.id)">
                         <img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />
                     </b-button>
                 </div>

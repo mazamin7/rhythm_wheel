@@ -4,15 +4,16 @@ fissare massimo numero di step
 aggiustare slider velocità, deve partire da un minimo
 mostrare la velocità in bpm
 
-fixare problema quando cancelli tutti i rings
-fixare problema: i nuovi stati non sono visibili subito nel vue-select
+fixare problema quando cancelli tutti i rings FATTO
+fixare problema: i nuovi stati non sono visibili subito nel vue-select FATTO
 fare più stati e menu a tendina per scegliere stato e nome stato FATTO
+salvare e caricare lo stato su firebase FATTO
+METTERE SU GITHUB FATTO
 
 registrazione canzone generata
 libreria di ritmi/poliritmi
-salvare e caricare lo stato su firebase DA FARE
-METTERE SU GITHUB FATTO
 rhythm recognition
+generazione poliritmo random da rumore ambientale
 */
 import Vue from 'vue';
 import vSelect from "vue-select";
@@ -47,7 +48,6 @@ function dbCallback(snapshot) {
         id: doc.id,
         ...doc.data(),
     }));
-    console.log(app.states)
 };
 
 var app = new Vue({
@@ -77,8 +77,7 @@ var app = new Vue({
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
-        savedState: [],
-        states: null
+        states: []
     },
     methods: {
         range: function(start, stop, step) {
@@ -91,64 +90,42 @@ var app = new Vue({
         },
 
         deleteState: function(id) {
-            var index = -1;
-
-            for (var i = 0; i < this.savedState.length; ++i)
-                if (this.savedState[i].id == id)
-                    index = i
-
-            if (index < 0) {
-                alert("error")
-                return
-            }
-
-            this.savedState[index] = null
-            this.savedState.splice(index, 1)
-
+            const documentReference = db.collection("states").doc(id);
+            documentReference.delete();
             this.selectedState = null
         },
 
         saveState: function(name) {
-            const id = this.savedState.length
-            this.savedState.push({ id: id, name: name, state: [] })
-
-            const index = this.savedState.length - 1
+            var state = {}
+            state.name = name.trim()
+            state.rings = []
 
             for (var i = 0; i < this.rings.length; ++i) {
-                this.savedState[index].state.push({})
+                state.rings.push({})
 
-                this.savedState[index].state[i].steps = this.rings[i].steps;
-                this.savedState[index].state[i].instrumentIndex = this.rings[i].instrumentIndex;
-                this.savedState[index].state[i].color = this.rings[i].color;
+                state.rings[i].steps = this.rings[i].steps;
+                state.rings[i].instrument = this.rings[i].instrumentIndex;
+                state.rings[i].color = this.rings[i].color;
 
-                this.savedState[index].state[i].pattern = [];
+                state.rings[i].pattern = [];
 
                 for (var j = 0; j < this.rings[i].pattern.length; ++j)
-                    this.savedState[index].state[i].pattern[j] = this.rings[i].pattern[j];
+                    state.rings[i].pattern[j] = this.rings[i].pattern[j];
 
-                this.savedState[index].state[i].phase = this.rings[i].phase;
+                state.rings[i].phase = this.rings[i].phase;
             }
+
+            db.collection("states").add(state);
         },
 
-        loadState: function(id) {
+        loadState: function(state) {
             this.rings = [];
             this.players = [];
 
-            var index = -1;
-
-            for (var i = 0; i < this.savedState.length; ++i)
-                if (this.savedState[i].id == id)
-                    index = i
-
-            if (index < 0) {
-                alert("error")
-                return
-            }
-
-            for (var i = 0; i < this.savedState[index].state.length; ++i) {
-                var steps = this.savedState[index].state[i].steps;
-                var instrumentIndex = this.savedState[index].state[i].instrumentIndex;
-                var color = this.savedState[index].state[i].color;
+            for (var i = 0; i < state.length; ++i) {
+                var steps = state[i].steps;
+                var instrumentIndex = state[i].instrument;
+                var color = state[i].color;
 
                 this.rings.push(
                     new this.ring(
@@ -158,10 +135,10 @@ var app = new Vue({
                     )
                 );
 
-                for (var j = 0; j < this.savedState[index].state[i].pattern.length; ++j)
-                    this.rings[i].pattern[j] = this.savedState[index].state[i].pattern[j];
+                for (var j = 0; j < state[i].pattern.length; ++j)
+                    this.rings[i].pattern[j] = state[i].pattern[j];
 
-                this.rings[i].phase = this.savedState[index].state[i].phase;
+                this.rings[i].phase = state[i].phase;
 
                 this.players.push(new Tone.Player(
                     this.instruments[instrumentIndex].audio
