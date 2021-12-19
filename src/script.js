@@ -66,16 +66,9 @@ var app = new Vue({
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
-        savedState: {}
+        savedState: []
     },
     methods: {
-        getStates: function() {
-            if (this.savedState.length != 0)
-                return Object.keys(this.savedState)
-            else
-                return []
-        },
-
         range: function(start, stop, step) {
             step = step || 1;
             var arr = [];
@@ -86,32 +79,46 @@ var app = new Vue({
         },
 
         saveState: function(name) {
-            this.savedState[name] = []
+            const id = this.savedState.length
+            this.savedState.push({ id: id, name: name, state: [] })
+
+            const index = this.savedState.length - 1
 
             for (var i = 0; i < this.rings.length; ++i) {
-                this.savedState[name].push({})
+                this.savedState[index].state.push({})
 
-                this.savedState[name][i].steps = this.rings[i].steps;
-                this.savedState[name][i].instrumentIndex = this.rings[i].instrumentIndex;
-                this.savedState[name][i].color = this.rings[i].color;
+                this.savedState[index].state[i].steps = this.rings[i].steps;
+                this.savedState[index].state[i].instrumentIndex = this.rings[i].instrumentIndex;
+                this.savedState[index].state[i].color = this.rings[i].color;
 
-                this.savedState[name][i].pattern = [];
+                this.savedState[index].state[i].pattern = [];
 
                 for (var j = 0; j < this.rings[i].pattern.length; ++j)
-                    this.savedState[name][i].pattern[j] = this.rings[i].pattern[j];
+                    this.savedState[index].state[i].pattern[j] = this.rings[i].pattern[j];
 
-                this.savedState[name][i].phase = this.rings[i].phase;
+                this.savedState[index].state[i].phase = this.rings[i].phase;
             }
         },
 
-        loadState: function(name) {
+        loadState: function(id) {
             this.rings = [];
             this.players = [];
 
-            for (var i = 0; i < this.savedState[name].length; ++i) {
-                var steps = this.savedState[name][i].steps;
-                var instrumentIndex = this.savedState[name][i].instrumentIndex;
-                var color = this.savedState[name][i].color;
+            var index = -1;
+
+            for (var i = 0; i < this.savedState.length; ++i)
+                if (this.savedState[i].id == id)
+                    index = i
+
+            if (index < 0) {
+                alert("error")
+                return
+            }
+
+            for (var i = 0; i < this.savedState[index].state.length; ++i) {
+                var steps = this.savedState[index].state[i].steps;
+                var instrumentIndex = this.savedState[index].state[i].instrumentIndex;
+                var color = this.savedState[index].state[i].color;
 
                 this.rings.push(
                     new this.ring(
@@ -121,10 +128,10 @@ var app = new Vue({
                     )
                 );
 
-                for (var j = 0; j < this.savedState[name][i].pattern.length; ++j)
-                    this.rings[i].pattern[j] = this.savedState[name][i].pattern[j];
+                for (var j = 0; j < this.savedState[index].state[i].pattern.length; ++j)
+                    this.rings[i].pattern[j] = this.savedState[index].state[i].pattern[j];
 
-                this.rings[i].phase = this.savedState[name][i].phase;
+                this.rings[i].phase = this.savedState[index].state[i].phase;
 
                 this.players.push(new Tone.Player(
                     this.instruments[instrumentIndex].audio

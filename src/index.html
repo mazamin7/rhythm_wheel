@@ -29,7 +29,7 @@
         <div class="menu-container">
             <div class="menu-option-container">
                 <label>States:</label>
-                <v-select :options="getStates()" class="select" v-model="selectedState"></v-select>
+                <v-select :options="savedState" :reduce="state => state.id" label="name" class="select" v-model="selectedState"></v-select>
                 <input v-model="stateName" placeholder="State name">
                 <div class="buttons-container">
                     <b-button pill :disabled="selectedState == null" v-on:click="loadState(selectedState)">
