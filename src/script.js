@@ -19,8 +19,8 @@ import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
 import 'regenerator-runtime/runtime'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { firebase } from '@firebase/app'
+import "firebase/firestore"
 
 Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
@@ -37,8 +37,18 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fApp = initializeApp(firebaseConfig);
-const db = getFirestore(fApp);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.collection("states").onSnapshot(dbCallback);
+
+function dbCallback(snapshot) {
+    app.states = [];
+    snapshot.docs.forEach((doc) => app.states.push({
+        id: doc.id,
+        ...doc.data(),
+    }));
+    console.log(app.states)
+};
 
 var app = new Vue({
     el: "#app",
@@ -67,7 +77,8 @@ var app = new Vue({
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
-        savedState: []
+        savedState: [],
+        states: null
     },
     methods: {
         range: function(start, stop, step) {
