@@ -27,7 +27,6 @@ Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
     authDomain: "rhythmwheel.firebaseapp.com",
@@ -89,33 +88,42 @@ var app = new Vue({
             return arr;
         },
 
-        deleteState: function(id) {
-            const documentReference = db.collection("states").doc(id);
-            documentReference.delete();
-            this.selectedState = null
-        },
-
-        saveState: function(name) {
+        newState: function(name) {
             var state = {}
             state.name = name.trim()
             state.rings = []
 
+            db.collection("states").add(state);
+        },
+
+        deleteState: function(id) {
+            const documentReference = db.collection("states").doc(id);
+            documentReference.delete();
+
+            this.selectedState = null
+        },
+
+        saveState: function(id) {
+            const documentReference = db.collection("states").doc(id);
+
+            const rings = []
+
             for (var i = 0; i < this.rings.length; ++i) {
-                state.rings.push({})
+                rings.push({})
 
-                state.rings[i].steps = this.rings[i].steps;
-                state.rings[i].instrument = this.rings[i].instrumentIndex;
-                state.rings[i].color = this.rings[i].color;
+                rings[i].steps = this.rings[i].steps;
+                rings[i].instrument = this.rings[i].instrumentIndex;
+                rings[i].color = this.rings[i].color;
 
-                state.rings[i].pattern = [];
+                rings[i].pattern = [];
 
                 for (var j = 0; j < this.rings[i].pattern.length; ++j)
-                    state.rings[i].pattern[j] = this.rings[i].pattern[j];
+                    rings[i].pattern[j] = this.rings[i].pattern[j];
 
-                state.rings[i].phase = this.rings[i].phase;
+                rings[i].phase = this.rings[i].phase;
             }
 
-            db.collection("states").add(state);
+            documentReference.update({ rings: rings });
         },
 
         loadState: function(state) {
