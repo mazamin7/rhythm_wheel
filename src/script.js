@@ -13,7 +13,7 @@ METTERE SU GITHUB FATTO
 registrazione canzone generata
 libreria di ritmi/poliritmi
 rhythm recognition
-generazione poliritmo random da rumore ambientale
+generazione poliritmo random da rumore ambientale (modificare getRandom())
 */
 import Vue from 'vue';
 import vSelect from "vue-select";
@@ -79,6 +79,60 @@ var app = new Vue({
         states: []
     },
     methods: {
+        reset: function() {
+            this.pause()
+
+            for (var i = 0; i < this.rings.length; ++i)
+                this.rings[i] = null
+            this.rings = []
+
+            for (var i = 0; i < this.players.length; ++i)
+                this.players[i].stop()
+            this.players[i] = null
+            this.players = []
+        },
+
+        getRandom: function() {
+            return Math.random()
+        },
+
+        randomize: function() {
+            this.reset()
+
+            var rings = Math.round(this.getRandom() * 8)
+
+            while (rings < 1)
+                rings = Math.round(this.getRandom() * 8)
+
+            for (var i = 0; i < rings; ++i) {
+                var steps = Math.round(this.getRandom() * 32);
+
+                while (steps < 1)
+                    steps = Math.round(this.getRandom() * 32)
+
+                const instrument = Math.round(this.getRandom() * (this.instruments.length - 1));
+                console.log("instrument " + instrument)
+                const color = this.colors[Math.round(this.getRandom() * this.colors.length)];
+
+                this.rings.push(
+                    new this.ring(
+                        steps,
+                        instrument,
+                        color
+                    )
+                );
+
+                for (var j = 0; j < steps; ++j)
+                    this.rings[i].pattern[j] = Math.round(this.getRandom())
+
+                this.rings[i].phase = this.getRandom() * 2 * Math.PI
+
+                this.players.push(new Tone.Player(
+                    this.instruments[instrument].audio
+                ).toDestination())
+            }
+        },
+
         range: function(start, stop, step) {
             step = step || 1;
             var arr = [];
@@ -112,7 +166,7 @@ var app = new Vue({
                 rings.push({})
 
                 rings[i].steps = this.rings[i].steps;
-                rings[i].instrument = this.rings[i].instrumentIndex;
+                rings[i].instrument = this.rings[i].instrument;
                 rings[i].color = this.rings[i].color;
 
                 rings[i].pattern = [];
@@ -127,18 +181,17 @@ var app = new Vue({
         },
 
         loadState: function(state) {
-            this.rings = [];
-            this.players = [];
+            this.reset()
 
             for (var i = 0; i < state.length; ++i) {
                 var steps = state[i].steps;
-                var instrumentIndex = state[i].instrument;
+                var instrument = state[i].instrument;
                 var color = state[i].color;
 
                 this.rings.push(
                     new this.ring(
                         steps,
-                        instrumentIndex,
+                        instrument,
                         color
                     )
                 );
@@ -149,7 +202,7 @@ var app = new Vue({
                 this.rings[i].phase = state[i].phase;
 
                 this.players.push(new Tone.Player(
-                    this.instruments[instrumentIndex].audio
+                    this.instruments[instrument].audio
                 ).toDestination())
             }
         },
@@ -239,9 +292,9 @@ var app = new Vue({
             };
         },
 
-        ring: function ring(steps, instrumentIndex, color) {
+        ring: function ring(steps, instrument, color) {
             this.steps = steps;
-            this.instrumentIndex = instrumentIndex;
+            this.instrument = instrument;
             this.color = color;
             this.pattern = [];
 
@@ -429,7 +482,6 @@ var app = new Vue({
                 for (var i = 0; i < steps - this.rings[ring].steps; ++i)
                     this.rings[ring].pattern.push(0);
 
-            //this.rings[ring].steps = steps
             Vue.set(this.rings[ring], "steps", steps);
         },
 
@@ -438,7 +490,7 @@ var app = new Vue({
         },
 
         changeRingInstrument: function(ring, instrument) {
-            this.rings[ring].instrumentIndex = this.instruments.indexOf(instrument);
+            this.rings[ring].instrument = this.instruments.indexOf(instrument);
             this.players[ring] = new Tone.Player(
                 instrument.audio
             ).toDestination();
@@ -456,7 +508,7 @@ var app = new Vue({
                 return;
 
             this.selectedInstrument = this.instruments[
-                this.rings[this.selectedRing - 1].instrumentIndex
+                this.rings[this.selectedRing - 1].instrument
             ];
             this.selectedColor = this.rings[this.selectedRing - 1].color;
         },
@@ -572,15 +624,8 @@ var app = new Vue({
                 if (res >= 0) {
                     this.ringHighlighted = i;
                     this.stepHighlighted = res;
-                    //this.rings[i].draw(res);
                 }
             }
-
-            /* if (
-                                this.lastStepHighlighted != null &&
-                                this.ringHighlighted != this.lastRingHighlighted
-                              )
-                                this.rings[this.lastRingHighlighted].draw(-1);*/
 
             // set cursor according to the highlight status
             this.canvas.style.cursor =
