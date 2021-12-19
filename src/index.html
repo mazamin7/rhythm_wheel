@@ -44,7 +44,7 @@
                 <div class="buttons-container">
                     <input v-model="stateName" placeholder="State name">
                     <b-button pill :disabled="stateName == null || stateName.trim() == '' " v-on:click="newState(stateName)">
-                        <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load-download-icon.png" />
+                        <img class="image" src="https://iconarchive.com/download/i87120/graphicloads/colorful-long-shadow/New.ico" />
                     </b-button>
                 </div>
             </div>
@@ -74,10 +74,15 @@
         </div>
         <div class="buttons-container">
             <b-button pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                <img class="play-image" src="https://img.icons8.com/ios-glyphs/48/000000/plus-math.png" />
+                <img class="image" src="https://img.icons8.com/ios-glyphs/48/000000/plus-math.png" />
             </b-button>
             <b-button pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
-                <img class="play-image" src="https://img.icons8.com/ios-glyphs/48/000000/minus-math.png" />
+                <img class="image" src="https://img.icons8.com/ios-glyphs/48/000000/minus-math.png" />
+            </b-button>
+        </div>
+        <div class="buttons-container">
+            <b-button pill v-on:click="randomize()">
+                <img class="image" src="https://static.thenounproject.com/png/801336-200.png" />
             </b-button>
         </div>
         <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
