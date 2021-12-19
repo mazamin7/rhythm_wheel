@@ -1,14 +1,20 @@
 /*
-fissare massimo numero di rings
-fissare massimo numero di step
-aggiustare slider velocità, deve partire da un minimo
-mostrare la velocità in bpm
+fissare massimo numero di rings FATTO
+fissare massimo numero di step FATTO
+aggiustare slider velocità, deve partire da un minimo FATTO
+mostrare la velocità in bpm FATTO
 
 fixare problema quando cancelli tutti i rings FATTO
 fixare problema: i nuovi stati non sono visibili subito nel vue-select FATTO
 fare più stati e menu a tendina per scegliere stato e nome stato FATTO
 salvare e caricare lo stato su firebase FATTO
 METTERE SU GITHUB FATTO
+
+COSE AGGIUNTE 19/12
+tasto delete dentro la select dei rings FATTO (da aggiustare css)
+tasto add ring dentro la select dei rings FATTO (da aggiustare css)
+select states cambia lo stato quando direttamente con @input FATTO
+cambiato alcune icone per renderle più simili alle altre FATTO
 
 registrazione canzone generata
 libreria di ritmi/poliritmi
@@ -76,7 +82,9 @@ var app = new Vue({
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
-        states: []
+        states: [],
+        numeroMaxRings : 6,
+        numeroMaxSteps : 20
     },
     methods: {
         reset: function() {
@@ -139,6 +147,7 @@ var app = new Vue({
             for (var i = start; i < stop; i += step) {
                 arr.push(i);
             }
+            arr.push(stop);
             return arr;
         },
 
@@ -540,8 +549,7 @@ var app = new Vue({
                     instrument,
                     color
                 )
-            );
-
+                );
             this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination())
         },
 

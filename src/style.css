@@ -96,3 +96,17 @@ label {
     flex-direction: column;
     align-items: center;
 }
+
+.inside-ring-select{
+    display : flex;
+    justify-content: space-between;
+}
+
+.button-inside-select{
+    background-color: white;
+    border: none;
+}
+
+.image-small{
+    width: 1.6em;
+}
