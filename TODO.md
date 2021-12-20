@@ -2,6 +2,7 @@
 
 - [ ] 	identification of the polyrhythm
 - [ ]   generation of a random polyrhythm (of a specific type) starting from external sources (ambient noise, webcam image, other)
+- [ ]   fix scroll
 
 ### In Progress
 
