@@ -29,11 +29,11 @@
         <div class="menu-container">
             <div class="menu-option-container">
                 <label>States:</label>
-                <v-select :options="states" label="name" class="select" v-model="selectedState">
+                <v-select ref="stateSelector" :options="states" label="name" class="select" v-model="selectedState">
                     <template v-slot:option="option">
                         <div v-if="option.name!='Add New'" class="inside-ring-select">
                         <p>{{option.name}}</p>
-                        <b-button class="button-inside-select" pill v-on:click="deleteState(option.id)">
+                        <b-button class="button-inside-select" pill v-on:click="deleteState($event, option.id)">
                             <!--<img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />-->
                             <img class="image-small" src="https://img.icons8.com/ios/100/000000/delete-property.png" />
                         </b-button>
@@ -68,9 +68,9 @@
                 <label>Ring:</label>
                 <v-select :options="range(1, this.rings.length + 1, 1)" class="select" v-model="selectedRing" @input="selectRing(selectedRing)">
                     <template v-slot:option="option">
-                        <div v-if="option.label<=rings.length" class="inside-ring-select">
+                        <div v-if="option.label <= rings.length" class="inside-ring-select">
                         <p>{{option.label}}</p>
-                        <b-button class="button-inside-select" pill v-on:click="deleteRing(option.label - 1)">
+                        <b-button class="button-inside-select" pill v-on:click="deleteRing($event, option.label - 1)">
                             <img class="image-small" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png"/>
                         </b-button>
                         </div>

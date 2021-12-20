@@ -131,26 +131,33 @@ var app = new Vue({
         },
 
         uploadNewState: function(name) {
-            var state = {}
+            let state = {}
             state.name = name.trim()
             state.rings = []
 
             this.showAddState = false;
 
             db.collection("states").add(state)
+                .then(function(docRef) {
+                    docRef.get().then(function(snap) {
+                        app.selectedState.id = snap.id
+                        app.saveState(snap.id)
+                        app.selectedState.name = snap.data().name
+                        app.selectedState.rings = snap.data().rings
+                    })
+                })
                 .catch(function() {
                     alert("Internal error: can't upload state to database")
                 });
-
-            return state
         },
 
-        deleteState: function(id) {
+        deleteState: function(event, id) {
             const documentReference = db.collection("states").doc(id);
             documentReference.delete();
 
             this.selectedState = null
-            console.log("OK " + this.selectedState)
+            this.$refs["stateSelector"].clearSelection()
+            event.stopPropagation()
         },
 
         saveState: function(id) {
@@ -500,7 +507,7 @@ var app = new Vue({
             return true
         },
 
-        deleteRing: function(ring) {
+        deleteRing: function(event, ring) {
             if (ring == null)
                 return;
 
@@ -510,6 +517,7 @@ var app = new Vue({
             this.players.splice(ring, 1)
 
             this.selectedRing = null
+            event.stopPropagation()
         },
 
         addRing: function(steps, instrument, color) {
@@ -614,10 +622,7 @@ var app = new Vue({
             if (stateName == null || stateName == "") {
                 alert("Error: You can't create a state with an empty name!");
             } else {
-                const state = this.uploadNewState(stateName)
-                this.selectedState = state
-                    //DEBUG
-                console.log("created " + stateName + " " + this.selectedState)
+                this.uploadNewState(stateName)
             }
         }
     }
