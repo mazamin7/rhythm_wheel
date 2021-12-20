@@ -60,8 +60,8 @@ var app = new Vue({
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
         states: [],
-        numeroMaxRings : 6,
-        numeroMaxSteps : 20
+        numeroMaxRings: 6,
+        numeroMaxSteps: 20
     },
     methods: {
         reset: function() {
@@ -392,10 +392,6 @@ var app = new Vue({
             this.draw();
         },
 
-        changeSteps: function(ring, steps) {
-            this.rings[ring].steps = steps;
-        },
-
         rotateRings: function(mousePos, amount) {
             for (var i = 0; i < this.rings.length; ++i) {
                 if (this.isInside(i, mousePos) >= 0) {
@@ -444,7 +440,6 @@ var app = new Vue({
             if (steps == 1) {
                 Vue.set(this.rings[ring], "steps", this.rings[ring].steps + 1);
                 this.rings[ring].pattern.push(0);
-                return;
             }
 
             if (steps == 0) {
@@ -455,16 +450,7 @@ var app = new Vue({
                         this.rings[ring].steps
                     );
                 }
-                return;
             }
-
-            if (steps < this.rings[ring].steps)
-                this.rings[ring].pattern = this.rings[ring].pattern.splice(0, steps);
-            else
-                for (var i = 0; i < steps - this.rings[ring].steps; ++i)
-                    this.rings[ring].pattern.push(0);
-          
-            Vue.set(this.rings[ring], "steps", steps);
         },
 
         changeRingColor: function(ring, color) {
@@ -522,7 +508,7 @@ var app = new Vue({
                     instrument,
                     color
                 )
-                );
+            );
             this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination())
         },
 
