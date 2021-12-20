@@ -632,19 +632,19 @@ window.app = app;
 
 const audioPack = [{
         instrument: "gong 1",
-        audio: "https://tonejs.github.io/audio/berklee/gong_1.mp3"
+        audio: require('./resources/audio/gong_1.mp3')
     },
     {
         instrument: "gong 2",
-        audio: "https://tonejs.github.io/audio/berklee/gong_2.mp3"
+        audio: require('./resources/audio/gong_2.mp3')
     },
     {
         instrument: "shaker 1",
-        audio: "https://tonejs.github.io/audio/berklee/shaker_1.mp3"
+        audio: require('./resources/audio/shaker_1.mp3')
     },
     {
         instrument: "male voices",
-        audio: "https://tonejs.github.io/audio/berklee/malevoices_aa2_F3.mp3"
+        audio: require('./resources/audio/malevoices_aa2_F3.mp3')
     }
 ];
 
