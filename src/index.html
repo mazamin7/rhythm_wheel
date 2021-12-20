@@ -16,10 +16,10 @@
         </b-navbar>
         <div class="buttons-container">
             <b-button pill :disabled="getStatus() == 1" v-on:click="play()">
-                <img class="play-pause-image" src="https://img.icons8.com/ios/100/000000/play-button-circled--v1.png" />
+                <img class="play-pause-image" src="resources/play-button-circled.png" />
             </b-button>
             <b-button pill :disabled="!getStatus()" v-on:click="pause()">
-                <img class="play-pause-image" src="https://img.icons8.com/ios/100/000000/pause--v1.png" />
+                <img class="play-pause-image" src="resources/pause--button" />
             </b-button>
         </div>
         <div class="speed-container">
@@ -34,33 +34,33 @@
                         <div v-if="option.name!='Add New'" class="inside-ring-select">
                         <p>{{option.name}}</p>
                         <b-button class="button-inside-select" pill v-on:click="deleteState($event, option.id)">
-                            <!--<img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />-->
-                            <img class="image-small" src="https://img.icons8.com/ios/100/000000/delete-property.png" />
+                            <!--<img class="image" src="resources/external--delete--multimedia--button.png" />-->
+                            <img class="image-small" src="resources/delete--property.png" />
                         </b-button>
                         </div>
                         <div v-if="option.name=='Add New'" class="inside-ring-select">
                             <strong>Add New</strong>
                             <b-button class="button-inside-select" pill v-on:click="createNewState()">
-                                <img class="image-small" src="https://img.icons8.com/ios-filled/100/000000/add--v2.png" />
+                                <img class="image-small" src="resources/add--button.png" />
                             </b-button>
                         </div>
                       </template>
                 </v-select>
                 <div class="buttons-container">
                     <b-button pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings)">
-                        <!-- <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load-download-icon.png" /> -->
-                        <img class="image" src="https://img.icons8.com/fluency-systems-regular/96/000000/download--v1.png" />
+                        <!-- <img class="image" src="resources/load-download-icon.png" /> -->
+                        <img class="image" src="resources/donwload--button" />
                     </b-button>
                     <b-button pill :disabled="selectedState == null" v-on:click="saveState(selectedState.id)">
-                        <!--<img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load2-upload-icon.png" /> -->
-                        <img class="image" src="https://img.icons8.com/ios-glyphs/60/000000/save--v2.png" />
+                        <!--<img class="image" src="resources/load2-upload-icon.png" /> -->
+                        <img class="image" src="resources/save--button.png" />
                     </b-button>
                 </div>
                 <div v-if="showAddState" class="buttons-container">
                     <b-form-input v-model="stateName" placeholder="State name"></b-form-input>
                     <b-button pill :disabled="stateName == null || stateName.trim() == '' " v-on:click="newState(stateName)">
-                        <!--<img class="image" src="https://iconarchive.com/download/i87120/graphicloads/colorful-long-shadow/New.ico" />-->
-                        <img class="image" src="https://img.icons8.com/ios/96/000000/add-property.png" />
+                        <!--<img class="image" src="resources/Graphicloads-Colorful-Long-Shadow-New.ico" />-->
+                        <img class="image" src="resources/add--property.png" />
                     </b-button>
                 </div>
             </div>
@@ -71,13 +71,13 @@
                         <div v-if="option.label <= rings.length" class="inside-ring-select">
                         <p>{{option.label}}</p>
                         <b-button class="button-inside-select" pill v-on:click="deleteRing($event, option.label - 1)">
-                            <img class="image-small" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png"/>
+                            <img class="image-small" src="resources/external--delete--multimedia--button"/>
                         </b-button>
                         </div>
                         <div v-if="option.label>rings.length && rings.length<numeroMaxRings" class="inside-ring-select">
                             <strong>Add New</strong>
                             <b-button class="button-inside-select" pill v-if="rings.length<numeroMaxRings" v-on:click="addRing(8,0,'red')">
-                                <img class="image-small" src="https://img.icons8.com/ios-filled/100/000000/add--v2.png" />
+                                <img class="image-small" src="resources/add--button" />
                             </b-button>
                         </div>
                       </template>
@@ -85,11 +85,11 @@
                 <div class="buttons-container">
                     <!--
                     <b-button pill :disabled="!canDeleteRing(selectedRing)" v-on:click="deleteRing(selectedRing - 1)">
-                        <img class="image" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-multimedia-kiranshastry-solid-kiranshastry.png" />
+                        <img class="image" src="resources/external--delete--multimedia--button" />
                     </b-button>-->
                     <!--
                     <b-button pill v-if="rings.length<numeroMaxRings" v-on:click="addRing(8,0,'red')">
-                        <img class="image" src="https://img.icons8.com/ios-filled/100/000000/add--v2.png" />
+                        <img class="image" src="resources/add--button" />
                     </b-button> -->
                 </div>
             </div>
@@ -106,18 +106,18 @@
         </div>
         <div class="buttons-container">
             <b-button pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
-                <img class="image" src="https://img.icons8.com/ios-glyphs/48/000000/minus-math.png" />
+                <img class="image" src="resources/minus--math-button.png" />
             </b-button>
             <b-button pill v-if="selectedRing==null" :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                <img class="image" src="https://img.icons8.com/ios-glyphs/48/000000/plus-math.png" />
+                <img class="image" src="resources/plus--math--button.png" />
             </b-button>
             <b-button pill v-else-if="rings[selectedRing-1].steps<numeroMaxSteps" :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                <img class="image" src="https://img.icons8.com/ios-glyphs/48/000000/plus-math.png" />
+                <img class="image" src="resources/plus--math--button.png" />
             </b-button>
         </div>
         <div class="buttons-container">
             <b-button pill v-on:click="randomize()">
-                <img class="image" src="https://static.thenounproject.com/png/801336-200.png" />
+                <img class="image" src="resources/random--button.png" />
             </b-button>
         </div>
         <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
