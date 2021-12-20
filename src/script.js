@@ -1,26 +1,3 @@
-/*
-fissare massimo numero di rings FATTO
-fissare massimo numero di step FATTO
-aggiustare slider velocità, deve partire da un minimo FATTO
-mostrare la velocità in bpm FATTO
-
-fixare problema quando cancelli tutti i rings FATTO
-fixare problema: i nuovi stati non sono visibili subito nel vue-select FATTO
-fare più stati e menu a tendina per scegliere stato e nome stato FATTO
-salvare e caricare lo stato su firebase FATTO
-METTERE SU GITHUB FATTO
-
-COSE AGGIUNTE 19/12
-tasto delete dentro la select dei rings FATTO (da aggiustare css)
-tasto add ring dentro la select dei rings FATTO (da aggiustare css)
-select states cambia lo stato quando direttamente con @input FATTO
-cambiato alcune icone per renderle più simili alle altre FATTO
-
-registrazione canzone generata
-libreria di ritmi/poliritmi
-rhythm recognition
-generazione poliritmo random da rumore ambientale (modificare getRandom())
-*/
 import Vue from 'vue';
 import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
@@ -263,7 +240,6 @@ var app = new Vue({
 
             this.context.stroke();
 
-            //restoring
             this.context.lineWidth = oldLineWidth;
             this.context.lineCap = oldLineCap;
         },
@@ -354,10 +330,7 @@ var app = new Vue({
         },
 
         isInside: function(i, pos) {
-            // http://stackoverflow.com/questions/6270785/how-to-determine-whether-a-point-x-y-is-contained-within-an-arc-section-of-a-c
-            // Angle = arctan(y/x); Radius = sqrt(x * x + y * y);
             var radius = this.distanceBetween2Points(pos, this.center);
-            // we calculate atan only if the radius is OK
             if (radius >= this.minRadius(i) && radius <= this.maxRadius(i)) {
                 var angle = this.angleBetween2Points(this.center, pos);
 
@@ -490,7 +463,7 @@ var app = new Vue({
             else
                 for (var i = 0; i < steps - this.rings[ring].steps; ++i)
                     this.rings[ring].pattern.push(0);
-
+          
             Vue.set(this.rings[ring], "steps", steps);
         },
 
@@ -662,7 +635,6 @@ const audioPack = [{
     }
 ];
 
-//user interaction
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
 
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
