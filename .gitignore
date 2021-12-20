@@ -1,4 +1,4 @@
-config.json
 node_modules/
 dist/
-*.json
+.cache/
+package-lock.json

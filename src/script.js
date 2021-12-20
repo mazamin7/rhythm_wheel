@@ -1,11 +1,36 @@
-import Vue from '../node_modules/vue/dist/vue';
-import vSelect from "../node_modules/vue-select/dist/vue-select";
-import "../node_modules/vue-select/dist/vue-select.css";
+import Vue from 'vue';
+import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
+import 'regenerator-runtime/runtime'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { firebase } from '@firebase/app'
+import "firebase/firestore"
+
+Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.component("v-select", vSelect);
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
+    authDomain: "rhythmwheel.firebaseapp.com",
+    projectId: "rhythmwheel",
+    storageBucket: "rhythmwheel.appspot.com",
+    messagingSenderId: "269684546616",
+    appId: "1:269684546616:web:b0f918b004d3ef00dd5acd"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.collection("states").onSnapshot(dbCallback);
+
+function dbCallback(snapshot) {
+    app.states = [];
+    snapshot.docs.forEach((doc) => app.states.push({
+        id: doc.id,
+        ...doc.data(),
+    }));
+};
 
 var app = new Vue({
     el: "#app",
@@ -34,11 +59,63 @@ var app = new Vue({
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
-        savedState: {}
+        states: [],
+        numeroMaxRings : 6,
+        numeroMaxSteps : 20
     },
     methods: {
-        getStates: function() {
-            return Object.keys(this.savedState)
+        reset: function() {
+            this.pause()
+
+            for (var i = 0; i < this.rings.length; ++i)
+                this.rings[i] = null
+            this.rings = []
+
+            for (var i = 0; i < this.players.length; ++i)
+                this.players[i].stop()
+            this.players[i] = null
+            this.players = []
+        },
+
+        getRandom: function() {
+            return Math.random()
+        },
+
+        randomize: function() {
+            this.reset()
+
+            var rings = Math.round(this.getRandom() * 8)
+
+            while (rings < 1)
+                rings = Math.round(this.getRandom() * 8)
+
+            for (var i = 0; i < rings; ++i) {
+                var steps = Math.round(this.getRandom() * 32);
+
+                while (steps < 1)
+                    steps = Math.round(this.getRandom() * 32)
+
+                const instrument = Math.round(this.getRandom() * (this.instruments.length - 1));
+                console.log("instrument " + instrument)
+                const color = this.colors[Math.round(this.getRandom() * this.colors.length)];
+
+                this.rings.push(
+                    new this.ring(
+                        steps,
+                        instrument,
+                        color
+                    )
+                );
+
+                for (var j = 0; j < steps; ++j)
+                    this.rings[i].pattern[j] = Math.round(this.getRandom())
+
+                this.rings[i].phase = this.getRandom() * 2 * Math.PI
+
+                this.players.push(new Tone.Player(
+                    this.instruments[instrument].audio
+                ).toDestination())
+            }
         },
 
         range: function(start, stop, step) {
@@ -47,52 +124,71 @@ var app = new Vue({
             for (var i = start; i < stop; i += step) {
                 arr.push(i);
             }
+            arr.push(stop);
             return arr;
         },
 
-        saveState: function(name) {
-            this.savedState[name] = []
+        newState: function(name) {
+            var state = {}
+            state.name = name.trim()
+            state.rings = []
 
-            for (var i = 0; i < this.rings.length; ++i) {
-                this.savedState[name].push({})
-
-                this.savedState[name][i].steps = this.rings[i].steps;
-                this.savedState[name][i].instrumentIndex = this.rings[i].instrumentIndex;
-                this.savedState[name][i].color = this.rings[i].color;
-
-                this.savedState[name][i].pattern = [];
-
-                for (var j = 0; j < this.rings[i].pattern.length; ++j)
-                    this.savedState[name][i].pattern[j] = this.rings[i].pattern[j];
-
-                this.savedState[name][i].phase = this.rings[i].phase;
-            }
+            db.collection("states").add(state);
         },
 
-        loadState: function(name) {
-            this.rings = [];
-            this.players = [];
+        deleteState: function(id) {
+            const documentReference = db.collection("states").doc(id);
+            documentReference.delete();
 
-            for (var i = 0; i < this.savedState[name].length; ++i) {
-                var steps = this.savedState[name][i].steps;
-                var instrumentIndex = this.savedState[name][i].instrumentIndex;
-                var color = this.savedState[name][i].color;
+            this.selectedState = null
+        },
+
+        saveState: function(id) {
+            const documentReference = db.collection("states").doc(id);
+
+            const rings = []
+
+            for (var i = 0; i < this.rings.length; ++i) {
+                rings.push({})
+
+                rings[i].steps = this.rings[i].steps;
+                rings[i].instrument = this.rings[i].instrument;
+                rings[i].color = this.rings[i].color;
+
+                rings[i].pattern = [];
+
+                for (var j = 0; j < this.rings[i].pattern.length; ++j)
+                    rings[i].pattern[j] = this.rings[i].pattern[j];
+
+                rings[i].phase = this.rings[i].phase;
+            }
+
+            documentReference.update({ rings: rings });
+        },
+
+        loadState: function(state) {
+            this.reset()
+
+            for (var i = 0; i < state.length; ++i) {
+                var steps = state[i].steps;
+                var instrument = state[i].instrument;
+                var color = state[i].color;
 
                 this.rings.push(
                     new this.ring(
                         steps,
-                        instrumentIndex,
+                        instrument,
                         color
                     )
                 );
 
-                for (var j = 0; j < this.savedState[name][i].pattern.length; ++j)
-                    this.rings[i].pattern[j] = this.savedState[name][i].pattern[j];
+                for (var j = 0; j < state[i].pattern.length; ++j)
+                    this.rings[i].pattern[j] = state[i].pattern[j];
 
-                this.rings[i].phase = this.savedState[name][i].phase;
+                this.rings[i].phase = state[i].phase;
 
                 this.players.push(new Tone.Player(
-                    this.instruments[instrumentIndex].audio
+                    this.instruments[instrument].audio
                 ).toDestination())
             }
         },
@@ -181,9 +277,9 @@ var app = new Vue({
             };
         },
 
-        ring: function ring(steps, instrumentIndex, color) {
+        ring: function ring(steps, instrument, color) {
             this.steps = steps;
-            this.instrumentIndex = instrumentIndex;
+            this.instrument = instrument;
             this.color = color;
             this.pattern = [];
 
@@ -336,6 +432,14 @@ var app = new Vue({
             return this.playPause;
         },
 
+        canChangeRingSteps: function(ring, mode) {
+            if (ring == null)
+                return false
+            else if (this.rings[ring - 1].steps == 1 && mode == 0)
+                return false
+            return true
+        },
+
         changeRingSteps: function(ring, steps) {
             if (steps == 1) {
                 Vue.set(this.rings[ring], "steps", this.rings[ring].steps + 1);
@@ -359,6 +463,7 @@ var app = new Vue({
             else
                 for (var i = 0; i < steps - this.rings[ring].steps; ++i)
                     this.rings[ring].pattern.push(0);
+          
             Vue.set(this.rings[ring], "steps", steps);
         },
 
@@ -367,7 +472,7 @@ var app = new Vue({
         },
 
         changeRingInstrument: function(ring, instrument) {
-            this.rings[ring].instrumentIndex = this.instruments.indexOf(instrument);
+            this.rings[ring].instrument = this.instruments.indexOf(instrument);
             this.players[ring] = new Tone.Player(
                 instrument.audio
             ).toDestination();
@@ -385,16 +490,29 @@ var app = new Vue({
                 return;
 
             this.selectedInstrument = this.instruments[
-                this.rings[this.selectedRing - 1].instrumentIndex
+                this.rings[this.selectedRing - 1].instrument
             ];
             this.selectedColor = this.rings[this.selectedRing - 1].color;
         },
 
+        canDeleteRing: function(ring) {
+            if (ring == null)
+                return false
+            else if (this.rings.length == 0)
+                return false
+            return true
+        },
+
         deleteRing: function(ring) {
+            if (ring == null)
+                return;
+
             this.rings[ring] = null;
             this.players[ring] = null
             this.rings.splice(ring, 1);
             this.players.splice(ring, 1)
+
+            this.selectedRing = null
         },
 
         addRing: function(steps, instrument, color) {
@@ -404,16 +522,16 @@ var app = new Vue({
                     instrument,
                     color
                 )
-            );
-
+                );
             this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination())
         },
 
         draw: function() {
             const maxRadius = this.maxRadius(this.rings.length - 1);
 
+            this.drawClear();
+
             if (this.rings.length > 0) {
-                this.drawClear();
                 this.drawRings();
                 this.drawHand(this.center, this.currentDegree, maxRadius, 10);
             }
@@ -487,10 +605,10 @@ var app = new Vue({
                 if (res >= 0) {
                     this.ringHighlighted = i;
                     this.stepHighlighted = res;
-                    //this.rings[i].draw(res);
                 }
             }
 
+            // set cursor according to the highlight status
             this.canvas.style.cursor =
                 this.ringHighlighted != null ? "pointer" : "default";
         }
