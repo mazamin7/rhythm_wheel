@@ -40,7 +40,7 @@
                         </div>
                         <div v-if="option.name=='Add New'" class="inside-ring-select">
                             <strong>Add New</strong>
-                            <b-button class="button-inside-select" pill v-on:click="alertNewState()">
+                            <b-button class="button-inside-select" pill v-on:click="createNewState()">
                                 <img class="image-small" src="https://img.icons8.com/ios-filled/100/000000/add--v2.png" />
                             </b-button>
                         </div>
@@ -51,7 +51,7 @@
                         <!-- <img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load-download-icon.png" /> -->
                         <img class="image" src="https://img.icons8.com/fluency-systems-regular/96/000000/download--v1.png" />
                     </b-button>
-                    <b-button pill  :disabled="selectedState == null" v-on:click="saveState(selectedState.id)">
+                    <b-button pill :disabled="selectedState == null" v-on:click="saveState(selectedState.id)">
                         <!--<img class="image" src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/load2-upload-icon.png" /> -->
                         <img class="image" src="https://img.icons8.com/ios-glyphs/60/000000/save--v2.png" />
                     </b-button>

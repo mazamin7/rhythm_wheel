@@ -30,7 +30,7 @@ function dbCallback(snapshot) {
         id: doc.id,
         ...doc.data(),
     }));
-    app.states.push({name : "Add New"});
+    app.states.push({ name: "Add New" });
 };
 
 var app = new Vue({
@@ -63,7 +63,7 @@ var app = new Vue({
         states: [],
         numeroMaxRings: 6,
         numeroMaxSteps: 20,
-        showAddState : false
+        showAddState: false
     },
     methods: {
         reset: function() {
@@ -130,13 +130,19 @@ var app = new Vue({
             return arr;
         },
 
-        newState: function(name) {
+        uploadNewState: function(name) {
             var state = {}
             state.name = name.trim()
             state.rings = []
 
-            db.collection("states").add(state);
-            this.showAddState= false;
+            this.showAddState = false;
+
+            db.collection("states").add(state)
+                .catch(function() {
+                    alert("Internal error: can't upload state to database")
+                });
+
+            return state
         },
 
         deleteState: function(id) {
@@ -144,6 +150,7 @@ var app = new Vue({
             documentReference.delete();
 
             this.selectedState = null
+            console.log("OK " + this.selectedState)
         },
 
         saveState: function(id) {
@@ -602,14 +609,16 @@ var app = new Vue({
             this.canvas.style.cursor =
                 this.ringHighlighted != null ? "pointer" : "default";
         },
-        alertNewState : function() {
+        createNewState: function() {
             let stateName = prompt("Please enter the new state name:", "");
             if (stateName == null || stateName == "") {
                 alert("Error: You can't create a state with an empty name!");
+            } else {
+                const state = this.uploadNewState(stateName)
+                this.selectedState = state
+                    //DEBUG
+                console.log("created " + stateName + " " + this.selectedState)
             }
-            else {
-                this.newState(stateName)
-            } 
         }
     }
 });
