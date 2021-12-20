@@ -30,6 +30,7 @@ function dbCallback(snapshot) {
         id: doc.id,
         ...doc.data(),
     }));
+    app.states.push({name : "Add New"});
 };
 
 var app = new Vue({
@@ -61,7 +62,8 @@ var app = new Vue({
         document: null,
         states: [],
         numeroMaxRings: 6,
-        numeroMaxSteps: 20
+        numeroMaxSteps: 20,
+        showAddState : false
     },
     methods: {
         reset: function() {
@@ -134,6 +136,7 @@ var app = new Vue({
             state.rings = []
 
             db.collection("states").add(state);
+            this.showAddState= false;
         },
 
         deleteState: function(id) {
@@ -164,6 +167,7 @@ var app = new Vue({
             }
 
             documentReference.update({ rings: rings });
+            alert('State saved with success!');
         },
 
         loadState: function(state) {
@@ -597,6 +601,15 @@ var app = new Vue({
             // set cursor according to the highlight status
             this.canvas.style.cursor =
                 this.ringHighlighted != null ? "pointer" : "default";
+        },
+        alertNewState : function() {
+            let stateName = prompt("Please enter the new state name:", "");
+            if (stateName == null || stateName == "") {
+                alert("Error: You can't create a state with an empty name!");
+            }
+            else {
+                this.newState(stateName)
+            } 
         }
     }
 });

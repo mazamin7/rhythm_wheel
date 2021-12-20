@@ -13,8 +13,9 @@
 }
 
 .menu-option-container {
-    display: inline-block;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .buttons-container {
@@ -25,11 +26,8 @@
 }
 
 .menu-container {
-    position: relative;
-    display: inline-flex;
-    margin-top: 30px;
-    left: 50%;
-    transform: translate(-50%);
+    display: flex;
+    justify-content: space-around;
 }
 
 .canvas-container {
