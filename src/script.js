@@ -86,24 +86,33 @@ var app = new Vue({
         randomize: function() {
             this.reset()
 
-            let rings = prompt("Number of rings (0 to randomize):", "");
-            if (rings == null || isNaN(rings) || rings < 0) {
+            let rings = prompt("Number of rings (max 8) (null to randomize):", "");
+            if (rings == null) {
+                rings = 0
+                while (rings < 1)
+                    rings = Math.round(this.getRandom() * 8)
+            } else if (isNaN(rings) || rings < 1 || rings > 8) {
                 alert("Invalid value");
                 return;
             }
 
-            while (rings < 1)
-                rings = Math.round(this.getRandom() * 8)
+            let p = prompt("Step filling probability (btw 0 and 1) (null to randomize for each ring):", "");
+            if (p != null && (isNaN(p) || p < 0 || p > 1)) {
+                alert("Invalid value");
+                return;
+            }
 
             for (var i = 0; i < rings; ++i) {
+                p = this.getRandom()
+
                 var steps = Math.round(this.getRandom() * 32);
 
                 while (steps < 1)
                     steps = Math.round(this.getRandom() * 32)
 
                 const instrument = Math.round(this.getRandom() * (this.instruments.length - 1));
-                console.log("instrument " + instrument)
-                const color = this.colors[Math.round(this.getRandom() * this.colors.length)];
+
+                const color = this.colors[Math.round(this.getRandom() * (this.colors.length - 1))];
 
                 this.rings.push(
                     new this.ring(
@@ -114,7 +123,7 @@ var app = new Vue({
                 );
 
                 for (var j = 0; j < steps; ++j)
-                    this.rings[i].pattern[j] = Math.round(this.getRandom())
+                    this.rings[i].pattern[j] = this.getRandom() < p ? 1 : 0
 
                 this.rings[i].phase = this.getRandom() * 2 * Math.PI
 
