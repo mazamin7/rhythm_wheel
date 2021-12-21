@@ -63,7 +63,11 @@ var app = new Vue({
         states: [],
         numeroMaxRings: 6,
         numeroMaxSteps: 20,
-        showAddState: false
+        showAddState: false,
+        random: [],
+        pn: null,
+        mss: null,
+        c: null
     },
     methods: {
         reset: function() {
@@ -79,8 +83,45 @@ var app = new Vue({
             this.players = []
         },
 
+        randomPoolFiller: async function() {
+            this.c = new AudioContext();
+
+            var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            this.mss = this.c.createMediaStreamSource(stream);
+
+            this.pn = this.c.createScriptProcessor(1024, 1, 1);
+            this.pn.onaudioprocess = function(event) {
+                if (app.random.length < 10000)
+                    app.random.push(event.inputBuffer.getChannelData(0).slice());
+            };
+            this.mss.connect(this.pn);
+            this.pn.connect(this.c.destination);
+        },
+
         getRandom: function() {
-            return Math.random()
+            var x = 0
+            var numbers = null
+
+            if (this.random.length < 1)
+                return Math.random()
+
+            while (x == 0) {
+                numbers = this.random.reverse().pop()
+
+                if (numbers == undefined) {
+                    console.log("Empty random pool, returning pseudorandom")
+                    return Math.random()
+                }
+
+                this.random.reverse()
+
+                for (var i = 0; i < numbers.length; ++i)
+                    x += numbers[i]
+
+                x = Math.abs(x) % 1
+            }
+
+            return x
         },
 
         randomize: function() {
@@ -385,7 +426,7 @@ var app = new Vue({
             return -1;
         },
 
-        init: function(minRadius, width, distance, audioPack, canvas, document) {
+        init: async function(minRadius, width, distance, audioPack, canvas, document) {
             this.canvas = canvas;
             this.document = document;
 
@@ -424,6 +465,7 @@ var app = new Vue({
             }, 10);
 
             this.draw();
+            await this.randomPoolFiller();
         },
 
         rotateRings: function(mousePos, amount) {
