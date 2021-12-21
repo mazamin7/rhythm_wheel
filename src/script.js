@@ -380,16 +380,19 @@ var app = new Vue({
             this.canvas = canvas;
             this.document = document;
 
-            this.center = new this.point(
-                this.canvas.width / 2,
-                this.canvas.height / 2
-            );
-
             this.absMinRadius = minRadius;
             this.width = width;
             this.distance = distance;
 
             this.context = this.canvas.getContext("2d");
+
+            this.canvas.width = 700
+            this.canvas.height = 700
+
+            this.center = new this.point(
+                this.canvas.width / 2,
+                this.canvas.height / 2
+            );
 
             this.canvas.addEventListener("mousemove", this.track_mouse, false);
             this.canvas.addEventListener("click", this.click_mouse, false);

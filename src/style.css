@@ -1,4 +1,4 @@
-#app {
+body {
     background-color: rgb(214, 234, 250);
 }
 
@@ -31,8 +31,13 @@
 }
 
 .canvas-container {
+    position: absolute;
     display: flex;
     justify-content: center;
+    width: 700px;
+    height: 700px;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 button {
@@ -47,12 +52,6 @@ img {
 
 label {
     font-size: 18px;
-}
-
-#myCanvas {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
 }
 
 .speed-slider {
@@ -95,16 +94,16 @@ label {
     align-items: center;
 }
 
-.inside-ring-select{
-    display : flex;
+.inside-ring-select {
+    display: flex;
     justify-content: space-between;
 }
 
-.button-inside-select{
+.button-inside-select {
     background-color: white;
     border: none;
 }
 
-.image-small{
+.image-small {
     width: 1.6em;
 }
