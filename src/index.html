@@ -76,7 +76,7 @@
                         </div>
                         <div v-if="option.label>rings.length && rings.length<numeroMaxRings" class="inside-ring-select">
                             <strong>Add New</strong>
-                            <b-button class="button-inside-select" pill v-if="rings.length<numeroMaxRings" v-on:click="addRing(8,0,'red')">
+                            <b-button class="button-inside-select" pill v-if="rings.length<numeroMaxRings" v-on:click="addRing(null, null, null)">
                                 <img class="image-small" src="resources/images/add--button.png" />
                             </b-button>
                         </div>

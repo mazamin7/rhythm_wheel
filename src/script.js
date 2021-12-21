@@ -86,7 +86,11 @@ var app = new Vue({
         randomize: function() {
             this.reset()
 
-            var rings = Math.round(this.getRandom() * 8)
+            let rings = prompt("Number of rings (0 to randomize):", "");
+            if (rings == null || isNaN(rings) || rings < 0) {
+                alert("Invalid value");
+                return;
+            }
 
             while (rings < 1)
                 rings = Math.round(this.getRandom() * 8)
@@ -521,6 +525,31 @@ var app = new Vue({
         },
 
         addRing: function(steps, instrument, color) {
+            if (steps == null) {
+                steps = prompt("Number of steps:", "");
+                if (steps == null || isNaN(steps) || steps < 1) {
+                    alert("Invalid value");
+                    return;
+                }
+            }
+
+            if (instrument == null) {
+                //IMPROVE
+                instrument = prompt("Instrument:", "");
+                if (instrument == null || isNaN(instrument)) {
+                    alert("Invalid value");
+                    return;
+                }
+            }
+
+            if (color == null) {
+                color = prompt("Color:", "");
+                if (color == null || color.trim() == "") {
+                    alert("Invalid value");
+                    return;
+                }
+            }
+
             this.rings.push(
                 new this.ring(
                     steps,
@@ -617,6 +646,7 @@ var app = new Vue({
             this.canvas.style.cursor =
                 this.ringHighlighted != null ? "pointer" : "default";
         },
+
         createNewState: function() {
             let stateName = prompt("Please enter the new state name:", "");
             if (stateName == null || stateName == "") {
@@ -649,5 +679,4 @@ const audioPack = [{
 ];
 
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
-
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
