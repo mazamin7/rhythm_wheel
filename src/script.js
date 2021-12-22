@@ -316,10 +316,12 @@ var app = new Vue({
             this.context.lineWidth = oldLineWidth;
             this.context.lineCap = oldLineCap;
         },
+
         point: function(x, y) {
             this.x = x;
             this.y = y;
         },
+
         track_mouse: function(e) {
             var target = e.currentTarget;
             var mousePos = this.getMousePos(target, e);
@@ -404,6 +406,7 @@ var app = new Vue({
 
         isInside: function(i, pos) {
             var radius = this.distanceBetween2Points(pos, this.center);
+
             if (radius >= this.minRadius(i) && radius <= this.maxRadius(i)) {
                 var angle = this.angleBetween2Points(this.center, pos);
 
@@ -413,9 +416,9 @@ var app = new Vue({
 
                 var delta = this.delta(i);
 
-                for (var j = 0; i < this.rings[i].steps; ++j) {
-                    var sa = j * delta - Math.PI / 2;
-                    var ea = (j + 1) * delta + Math.PI / 90;
+                for (var j = 0; j < this.rings[i].steps; ++j) {
+                    var sa = j * delta;
+                    var ea = (j + 1) * delta;
 
                     if (ea < sa) ea += 2 * Math.PI;
 
@@ -424,6 +427,7 @@ var app = new Vue({
                     }
                 }
             }
+
             return -1;
         },
 
