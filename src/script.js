@@ -732,6 +732,62 @@ const audioPack = [{
     {
         instrument : "Closed Hi Hats",
         audio : require('url:./resources/audio/cl_hihat.wav')
+    },
+    {
+        instrument : "Claves",
+        audio : require('url:./resources/audio/claves.wav')
+    },
+    {
+        instrument : "Conga",
+        audio : require('url:./resources/audio/conga1.wav')
+    },
+    {
+        instrument : "Cowbell",
+        audio : require('url:./resources/audio/cowbell.wav')
+    },
+    {
+        instrument : "Crash Cymbals",
+        audio : require('url:./resources/audio/crashcym.wav')
+    },
+    {
+        instrument : "Hand Clap",
+        audio : require('url:./resources/audio/handclap.wav')
+    },
+    {
+        instrument : "Hi Conga",
+        audio : require('url:./resources/audio/hi_conga.wav')
+    },
+    {
+        instrument : "High Tom",
+        audio : require('url:./resources/audio/hightom.wav')
+    },
+    {
+        instrument : "Kick 1",
+        audio : require('url:./resources/audio/kick1.wav')
+    },
+    {
+        instrument : "Kick 2",
+        audio : require('url:./resources/audio/kick2.wav')
+    },
+    {
+        instrument : "Maracas",
+        audio : require('url:./resources/audio/maracas.wav')
+    },
+    {
+        instrument : "Open Hi Hats",
+        audio : require('url:./resources/audio/open_hh.wav')
+    },
+    {
+        instrument : "Rimshot",
+        audio : require('url:./resources/audio/rimshot.wav')
+    },
+    {
+        instrument : "Snare",
+        audio : require('url:./resources/audio/snare.wav')
+    },
+    {
+        instrument : "Tom 1",
+        audio : require('url:./resources/audio/tom1.wav')
     }
 ];
 
