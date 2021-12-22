@@ -458,7 +458,7 @@ var app = new Vue({
 
             setInterval(function() {
                 if (app.playPause) {
-                    app.currentDegree += app.speed / 100;
+                    app.currentDegree += 2 * 2 * Math.PI * app.speed / 100 / 60;
 
                     if (app.currentDegree >= 2 * Math.PI) {
                         app.currentDegree = 0;
