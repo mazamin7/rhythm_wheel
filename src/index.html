@@ -83,14 +83,6 @@
                       </template>
                 </v-select>
                 <div class="buttons-container">
-                    <!--
-                    <b-button pill :disabled="!canDeleteRing(selectedRing)" v-on:click="deleteRing(selectedRing - 1)">
-                        <img class="image" src="resources/images/external--delete--multimedia--button" />
-                    </b-button>-->
-                    <!--
-                    <b-button pill v-if="rings.length<numeroMaxRings" v-on:click="addRing(8,0,'red')">
-                        <img class="image" src="resources/images/add--button" />
-                    </b-button> -->
                 </div>
             </div>
             <div class="menu-option-container">
@@ -108,10 +100,7 @@
             <b-button pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
                 <img class="image" src="resources/images/minus--math-button.png" />
             </b-button>
-            <b-button pill v-if="selectedRing==null" :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                <img class="image" src="resources/images/plus--math--button.png" />
-            </b-button>
-            <b-button pill v-else-if="rings[selectedRing-1].steps<numeroMaxSteps" :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
+            <b-button pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
                 <img class="image" src="resources/images/plus--math--button.png" />
             </b-button>
         </div>

@@ -2,11 +2,12 @@
 
 - [ ] 	identification of the polyrhythm
 - [ ]   add more instruments
-- [ ]   fix bug occurring when some rings have less than N steps (steps cannot be clicked until you add more steps)
+- [ ]   fix speed management (steps of 1, not 10)
+- [ ]   UI improvements (alerts)
 
 ### In Progress
 
-- [ ]   UI improvements (alerts)
+- [ ]   fix bug occurring when ring N has less than N + 1 steps (steps cannot be clicked until you add more steps)
 
 ### Done ✓
 

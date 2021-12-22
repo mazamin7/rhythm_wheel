@@ -61,8 +61,8 @@ var app = new Vue({
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
         states: [],
-        numeroMaxRings: 6,
-        numeroMaxSteps: 20,
+        numeroMaxRings: 8,
+        numeroMaxSteps: 16,
         showAddState: false,
         random: [],
         pn: null,
@@ -75,6 +75,7 @@ var app = new Vue({
 
             for (var i = 0; i < this.rings.length; ++i)
                 this.rings[i] = null
+
             this.rings = []
 
             for (var i = 0; i < this.players.length; ++i)
@@ -95,7 +96,7 @@ var app = new Vue({
                     app.random.push(event.inputBuffer.getChannelData(0).slice());
             };
             this.mss.connect(this.pn);
-            this.pn.connect(this.c.destination);
+            //this.pn.connect(this.c.destination);
         },
 
         getRandom: function() {
@@ -127,12 +128,12 @@ var app = new Vue({
         randomize: function() {
             this.reset()
 
-            let rings = prompt("Number of rings (max 8) (null to randomize):", "");
+            let rings = prompt("Number of rings (max " + this.numeroMaxRings + ") (null to randomize):", "");
             if (rings == null) {
                 rings = 0
                 while (rings < 1)
-                    rings = Math.round(this.getRandom() * 8)
-            } else if (isNaN(rings) || rings < 1 || rings > 8) {
+                    rings = Math.round(this.getRandom() * this.numeroMaxRings)
+            } else if (isNaN(rings) || rings < 1 || rings > this.numeroMaxRings) {
                 alert("Invalid value");
                 return;
             }
@@ -146,10 +147,10 @@ var app = new Vue({
             for (var i = 0; i < rings; ++i) {
                 p = this.getRandom()
 
-                var steps = Math.round(this.getRandom() * 32);
+                var steps = Math.round(this.getRandom() * this.numeroMaxSteps);
 
                 while (steps < 1)
-                    steps = Math.round(this.getRandom() * 32)
+                    steps = Math.round(this.getRandom() * this.numeroMaxSteps)
 
                 const instrument = Math.round(this.getRandom() * (this.instruments.length - 1));
 
@@ -509,6 +510,8 @@ var app = new Vue({
                 return false
             else if (this.rings[ring - 1].steps == 1 && mode == 0)
                 return false
+            else if (this.rings[ring - 1].steps == this.numeroMaxSteps && mode == 1)
+                return false
             return true
         },
 
@@ -555,14 +558,6 @@ var app = new Vue({
                 this.rings[this.selectedRing - 1].instrument
             ];
             this.selectedColor = this.rings[this.selectedRing - 1].color;
-        },
-
-        canDeleteRing: function(ring) {
-            if (ring == null)
-                return false
-            else if (this.rings.length == 0)
-                return false
-            return true
         },
 
         deleteRing: function(event, ring) {
