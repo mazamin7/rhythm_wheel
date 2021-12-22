@@ -715,19 +715,23 @@ window.app = app;
 
 const audioPack = [{
         instrument: "gong 1",
-        audio: require('./resources/audio/gong_1.mp3')
+        audio: require('url:./resources/audio/gong_1.mp3')
     },
     {
         instrument: "gong 2",
-        audio: require('./resources/audio/gong_2.mp3')
+        audio: require('url:./resources/audio/gong_2.mp3')
     },
     {
         instrument: "shaker 1",
-        audio: require('./resources/audio/shaker_1.mp3')
+        audio: require('url:./resources/audio/shaker_1.mp3')
     },
     {
         instrument: "male voices",
-        audio: require('./resources/audio/malevoices_aa2_F3.mp3')
+        audio: require('url:./resources/audio/malevoices_aa2_F3.mp3')
+    },
+    {
+        instrument : "Closed Hi Hats",
+        audio : require('url:./resources/audio/cl_hihat.wav')
     }
 ];
 
