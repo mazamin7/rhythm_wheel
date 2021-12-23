@@ -1,6 +1,15 @@
 ### Todo
 
-- [ ] 	identification of the polyrhythm
+- [ ] 	identification of nested polyrhythms:
+            this feature should identify polyrhythms given 3 rings
+                - the first ring is the reference ring
+                - the second ring is the ring that is in a relationship M:N with the reference ring
+                - the third ring is the ring that allows us to have nested polyrhytms
+            another option would be to identify polyrhythms given 2 rings
+                - the first ring, as always, is the reference ring
+                - the second ring is a ring that allows us to create a polyrhythm and also nested polyrhythms
+                    this means that the relation must be multiplied two times (M:N * M':N')
+            check if these assumptions are valid
 - [ ]   UI improvements (alerts)
 - [ ]   improve instrument selection when create new ring
 - [ ]   improve color selection when create new ring
