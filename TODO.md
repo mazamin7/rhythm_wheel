@@ -1,7 +1,6 @@
 ### Todo
 
 - [ ] 	identification of the polyrhythm
-- [ ]   add more instruments
 - [ ]   UI improvements (alerts)
 - [ ]   improve instrument selection when create new ring
 - [ ]   improve color selection when create new ring
@@ -10,6 +9,7 @@
 
 ### Done ✓
 
+- [x]   add more instruments
 - [x]   fix speed management (steps of 1, not 10, not BPM but RPM (rounds per minute))
 - [x]   fix bug occurring when ring N has less than N + 1 steps (steps cannot be clicked until you add more steps, they play sound tho)
 - [x]   generation of a random polyrhythm (of a specific type) starting from external sources (ambient noise, webcam image, other)
