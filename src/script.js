@@ -55,8 +55,11 @@ var app = new Vue({
         playPause: 0,
         selectedRing: null,
         selectedInstrument: null,
+        selectedNewInstrument: null,
         selectedColor: null,
+        selectedNewColor: null,
         selectedState: null,
+        selectedSteps: null,
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue"],
         document: null,
@@ -67,7 +70,13 @@ var app = new Vue({
         random: [],
         pn: null,
         mss: null,
-        c: null
+        c: null,
+        showNewRings : false,
+        showNewInstruments : false,
+        showNewColor : false,
+        showRandomRings : false,
+        selectedRandomRings : null,
+        selectedRandomProbability : null
     },
     methods: {
         reset: function() {
@@ -125,9 +134,10 @@ var app = new Vue({
             return x
         },
 
-        randomize: function() {
+        randomize: function(rings, p) {
             this.reset()
 
+            /*
             let rings = prompt("Number of rings (max " + this.numeroMaxRings + ") (null to randomize):", "");
             if (rings == null) {
                 rings = 0
@@ -142,7 +152,7 @@ var app = new Vue({
             if (p != null && (isNaN(p) || p < 0 || p > 1)) {
                 alert("Invalid value");
                 return;
-            }
+            }*/
 
             for (var i = 0; i < rings; ++i) {
                 p = this.getRandom()
@@ -547,6 +557,12 @@ var app = new Vue({
             ).toDestination();
         },
 
+        addNewInstrument: function(instrument){
+            this.selectedNewInstrument = this.instruments.indexOf(instrument);
+            this.showNewColor = true;
+            this.showNewInstruments = false;
+        },
+
         addInstrument: function(name, audio) {
             this.instruments.push({
                 name: name,
@@ -578,6 +594,7 @@ var app = new Vue({
         },
 
         addRing: function(steps, instrument, color) {
+            /*
             if (steps == null) {
                 steps = prompt("Number of steps:", "");
                 if (steps == null || isNaN(steps) || steps < 1) {
@@ -601,8 +618,16 @@ var app = new Vue({
                     alert("Invalid value");
                     return;
                 }
+            }*/
+            if(steps===null || instrument===null || color===null){
+                this.showNewRings = false;
+                this.showNewInstruments = false;
+                this.showNewColor = false;
             }
-
+            else{
+                this.showNewRings = false;
+                this.showNewInstruments = false;
+                this.showNewColor = false;
             this.rings.push(
                 new this.ring(
                     steps,
@@ -610,7 +635,8 @@ var app = new Vue({
                     color
                 )
             );
-            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination())
+            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());   
+            }
         },
 
         draw: function() {

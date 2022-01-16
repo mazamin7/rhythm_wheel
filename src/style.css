@@ -107,3 +107,27 @@ label {
 .image-small {
     width: 1.6em;
 }
+
+.new-container{
+    display: flex;
+    justify-content: center;
+    margin : 6em 0;
+}
+
+.new-steps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-instrument{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-color{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
