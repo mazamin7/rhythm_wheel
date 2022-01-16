@@ -61,7 +61,7 @@ var app = new Vue({
         selectedState: null,
         selectedSteps: null,
         stateName: null,
-        colors: ["red", "orange", "yellow", "green", "blue"],
+        colors: ["red", "orange", "green", "blue"],
         document: null,
         states: [],
         numeroMaxRings: 8,
@@ -71,12 +71,12 @@ var app = new Vue({
         pn: null,
         mss: null,
         c: null,
-        showNewRings : false,
-        showNewInstruments : false,
-        showNewColor : false,
-        showRandomRings : false,
-        selectedRandomRings : null,
-        selectedRandomProbability : null
+        showNewRings: false,
+        showNewInstruments: false,
+        showNewColor: false,
+        showRandomRings: false,
+        selectedRandomRings: null,
+        selectedRandomProbability: null
     },
     methods: {
         reset: function() {
@@ -105,58 +105,45 @@ var app = new Vue({
                     app.random.push(event.inputBuffer.getChannelData(0).slice());
             };
             this.mss.connect(this.pn);
-            //this.pn.connect(this.c.destination);
         },
 
         getRandom: function() {
             var x = 0
             var numbers = null
 
-            if (this.random.length < 1)
+            if (this.random.length < 1) {
+                console.log("Empty random pool, returning pseudorandom number")
                 return Math.random()
+            }
 
             while (x == 0) {
                 numbers = this.random.reverse().pop()
 
                 if (numbers == undefined) {
-                    console.log("Empty random pool, returning pseudorandom")
+                    console.log("Empty random pool, returning pseudorandom number")
                     return Math.random()
                 }
 
                 this.random.reverse()
 
                 for (var i = 0; i < numbers.length; ++i)
-                    x += numbers[i]
+                    x += numbers[i] * 1000
 
                 x = Math.abs(x) % 1
             }
 
+            console.log("Returning noise generated random number")
             return x
         },
 
-        randomize: function(rings, p) {
+        randomize: function() {
             this.reset()
-
-            /*
-            let rings = prompt("Number of rings (max " + this.numeroMaxRings + ") (null to randomize):", "");
-            if (rings == null) {
-                rings = 0
-                while (rings < 1)
-                    rings = Math.round(this.getRandom() * this.numeroMaxRings)
-            } else if (isNaN(rings) || rings < 1 || rings > this.numeroMaxRings) {
-                alert("Invalid value");
-                return;
-            }
-
-            let p = prompt("Step filling probability (btw 0 and 1) (null to randomize for each ring):", "");
-            if (p != null && (isNaN(p) || p < 0 || p > 1)) {
-                alert("Invalid value");
-                return;
-            }*/
+            const rings = this.selectedRandomRings
+            const p = this.selectedRandomProbability
+            this.selectedRandomRings = null
+            this.selectedRandomProbability = null
 
             for (var i = 0; i < rings; ++i) {
-                p = this.getRandom()
-
                 var steps = Math.round(this.getRandom() * this.numeroMaxSteps);
 
                 while (steps < 1)
@@ -557,8 +544,8 @@ var app = new Vue({
             ).toDestination();
         },
 
-        addNewInstrument: function(instrument){
-            this.selectedNewInstrument = this.instruments.indexOf(instrument);
+        selectNewInstrument: function() {
+            this.selectedNewInstrument = this.instruments.indexOf(this.selectedNewInstrument);
             this.showNewColor = true;
             this.showNewInstruments = false;
         },
@@ -593,41 +580,23 @@ var app = new Vue({
             event.stopPropagation()
         },
 
-        addRing: function(steps, instrument, color) {
-            /*
-            if (steps == null) {
-                steps = prompt("Number of steps:", "");
-                if (steps == null || isNaN(steps) || steps < 1) {
-                    alert("Invalid value");
-                    return;
-                }
-            }
+        addRing: function() {
+            if (!(this.selectedSteps === null || this.selectedNewInstrument === null || this.selectedNewColor === null)) {
+                var steps = this.selectedSteps
+                var instrument = this.selectedNewInstrument
+                var color = this.selectedNewColor
+                this.selectedSteps = null
+                this.selectedNewInstrument = null
+                this.selectedNewColor = null
 
-            if (instrument == null) {
-                //IMPROVE
-                instrument = prompt("Instrument:", "");
-                if (instrument == null || isNaN(instrument)) {
-                    alert("Invalid value");
-                    return;
-                }
-            }
-
-            if (color == null) {
-                color = prompt("Color:", "");
-                if (color == null || color.trim() == "") {
-                    alert("Invalid value");
-                    return;
-                }
-            }*/
-            if(steps===null || instrument===null || color===null){
                 this.showNewRings = false;
                 this.showNewInstruments = false;
                 this.showNewColor = false;
+            } else { //DEFAULT
+                var steps = 8
+                var instrument = 0
+                var color = "red"
             }
-            else{
-                this.showNewRings = false;
-                this.showNewInstruments = false;
-                this.showNewColor = false;
             this.rings.push(
                 new this.ring(
                     steps,
@@ -635,8 +604,7 @@ var app = new Vue({
                     color
                 )
             );
-            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());   
-            }
+            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());
         },
 
         draw: function() {
@@ -740,19 +708,19 @@ var app = new Vue({
 window.app = app;
 
 const audioPack = [{
-        instrument: "gong 1",
+        instrument: "Gong 1",
         audio: require('./resources/audio/gong_1.mp3')
     },
     {
-        instrument: "gong 2",
+        instrument: "Gong 2",
         audio: require('./resources/audio/gong_2.mp3')
     },
     {
-        instrument: "shaker 1",
+        instrument: "Shaker 1",
         audio: require('./resources/audio/shaker_1.mp3')
     },
     {
-        instrument: "male voices",
+        instrument: "Male voices",
         audio: require('./resources/audio/malevoices_aa2_F3.mp3')
     },
     {
@@ -818,4 +786,4 @@ const audioPack = [{
 ];
 
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
-for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
+for (var i = 0; i < 4; ++i) app.addRing();

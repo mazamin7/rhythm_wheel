@@ -28,27 +28,27 @@
         </div>
         <div v-if="showNewRings" class="new-container">
             <div class="new-steps" v-if="!showNewInstruments && !showNewColor && !showRandomRings">
-                <label>Number of Steps:</label>          
+                <label>Number of steps:</label>
                 <v-select ref="stepsSelector" :options="range(1, numeroMaxSteps, 1)" label="name" class="select" v-model="selectedSteps"></v-select>
-                <b-button v-on:click="showNewInstruments=true">Submit</b-button>
+                <b-button :disabled="selectedSteps == null" v-on:click="showNewInstruments=true">Submit</b-button>
             </div>
             <div class="new-instrument" v-if="showNewInstruments">
-                <label>Instrument:</label>          
+                <label>Instrument:</label>
                 <v-select ref="newInstrumentSelector" :options="instruments" label="name" class="select" v-model="selectedNewInstrument"></v-select>
-                <b-button v-on:click="addNewInstrument(selectedNewInstrument)">Submit</b-button>
+                <b-button :disabled="selectedNewInstrument == null" v-on:click="selectNewInstrument()">Submit</b-button>
             </div>
             <div class="new-color" v-if="showNewColor">
-                <label>Color:</label>          
+                <label>Color:</label>
                 <v-select ref="newColorSelector" :options="colors" label="name" class="select" v-model="selectedNewColor"></v-select>
-                <b-button v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor)">Submit</b-button>
+                <b-button :disabled="selectedNewColor == null" v-on:click="addRing()">Submit</b-button>
             </div>
 
             <div class="new-steps" v-if="showRandomRings">
-                <label>Number of Rings:</label>          
+                <label>Number of rings:</label>
                 <v-select ref="stepsSelector" :options="range(1, numeroMaxRings, 1)" label="name" class="select" v-model="selectedRandomRings"></v-select>
-                <label>Random Probability:</label>          
-                <v-select ref="stepsSelector" :options="range(0, 1, 0.01)" label="name" class="select" v-model="selectedRandomProbability"></v-select>
-                <b-button v-on:click="randomize(selectedRandomRings, selectedRandomProbability); showNewRings=false; showRandomRings=false;">Submit</b-button>
+                <label>Step fill probability:</label>
+                <v-select ref="stepsSelector" :options="range(0, 1, 0.1)" label="name" class="select" v-model="selectedRandomProbability"></v-select>
+                <b-button :disabled="selectedRandomRings == null || selectedRandomProbability == null" v-on:click="randomize(); showNewRings=false; showRandomRings=false;">Submit</b-button>
             </div>
 
         </div>
@@ -65,7 +65,7 @@
                         </b-button>
                         </div>
                         <div v-if="option.name=='Add New'" class="inside-ring-select">
-                            <strong>Add New</strong>
+                            <strong>Add new</strong>
                             <b-button class="button-inside-select" pill v-on:click="createNewState()">
                                 <img class="image-small" src="resources/images/add--button.png" />
                             </b-button>
@@ -101,7 +101,7 @@
                         </b-button>
                         </div>
                         <div v-if="option.label>rings.length && rings.length<numeroMaxRings" class="inside-ring-select">
-                            <strong>Add New</strong>
+                            <strong>Add new</strong>
                             <!--v-on:click="addRing(null, null, null)"-->
                             <b-button class="button-inside-select" pill v-if="rings.length<numeroMaxRings"  
                              v-on:click="showNewRings=true">
