@@ -63,6 +63,7 @@ var app = new Vue({
         selectedNewColor: null,
         selectedState: null,
         selectedSteps: null,
+        selectedVolume: 0,
         stateName: null,
         colors: ["red", "orange", "yellow", "green", "blue", "purple"],
         document: null,
@@ -168,6 +169,7 @@ var app = new Vue({
                     this.rings[i].pattern[j] = Math.round(this.getRandom() * 2);
 
                 this.rings[i].phase = this.getRandom() * 2 * Math.PI
+                this.rings[i].volume = -Math.round(100 * this.getRandom() * 30) / 100 - 5
 
                 this.selectedRandomRings = null;
                 this.selectedRandomProbability = null;
@@ -232,6 +234,7 @@ var app = new Vue({
                     rings[i].pattern[j] = this.rings[i].pattern[j];
 
                 rings[i].phase = this.rings[i].phase;
+                rings[i].volume = this.rings[i].volume
             }
 
             documentReference.update({ rings: rings });
@@ -251,6 +254,7 @@ var app = new Vue({
                     this.rings[i].pattern[j] = state[i].pattern[j];
 
                 this.rings[i].phase = state[i].phase;
+                this.rings[i].volume = state[i].volume
             }
         },
 
@@ -348,6 +352,7 @@ var app = new Vue({
 
             this.lastStep = -1;
             this.phase = 0;
+            this.volume = -5
 
             for (var i = 0; i < steps; ++i) this.pattern.push(0);
         },
@@ -476,9 +481,9 @@ var app = new Vue({
                 if (this.rings[i].pattern[step] > 0 && step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
                     if (this.rings[i].pattern[step] == 1)
-                        this.gains[i].volume.value = -10
+                        this.gains[i].volume.value = this.rings[i].volume - 5
                     else if (this.rings[i].pattern[step] == 2)
-                        this.gains[i].volume.value = -5
+                        this.gains[i].volume.value = this.rings[i].volume
                     this.players[i].start();
                 } else if (step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
@@ -529,6 +534,13 @@ var app = new Vue({
             this.rings[ring].color = color;
         },
 
+        changeRingVolume: function(ring, volume) {
+            if (volume > 0)
+                return
+
+            this.rings[ring].volume = volume - 5
+        },
+
         changeRingInstrument: function(ring, instrument) {
             this.rings[ring].instrument = this.instruments.indexOf(instrument);
             this.players[ring] = new Tone.Player(
@@ -557,6 +569,7 @@ var app = new Vue({
                 this.rings[this.selectedRing - 1].instrument
             ];
             this.selectedColor = this.rings[this.selectedRing - 1].color;
+            this.selectedVolume = this.rings[this.selectedRing - 1].volume + 5;
         },
 
         deleteRing: function(event, ring) {
