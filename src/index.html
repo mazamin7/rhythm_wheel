@@ -85,7 +85,7 @@
                 <v-select ref="newInstrumentSelector" :options="instruments" label="name" class="select" v-model="selectedNewInstrument"></v-select>
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showNewInstruments=false; selectedNewInstrument=null; selectedSteps=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="addNewInstrument(selectedNewInstrument)" :disabled="!selectedNewInstrument">Submit</b-button>
+                    <b-button variant="success" v-on:click="selectNewInstrument(selectedNewInstrument)" :disabled="!selectedNewInstrument">Submit</b-button>
                 </div>
             </div>
             <div class="new-color" v-if="showNewColor">
@@ -93,7 +93,7 @@
                 <v-select ref="newColorSelector" :options="colors" label="name" class="select" v-model="selectedNewColor"></v-select>
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showNewColor=false; selectedNewInstrument=null; selectedSteps=null; selectedNewColor=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true" :disabled="!selectedNewColor">Submit</b-button>
+                    <b-button variant="success" v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true; showNewRings = false; showNewInstruments = false; showNewColor = false;" :disabled="!selectedNewColor">Submit</b-button>
                 </div>
             </div>
 

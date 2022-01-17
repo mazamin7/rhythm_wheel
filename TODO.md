@@ -1,12 +1,13 @@
 ### Todo
 
-- [ ]   random fill probability should start from 0.5
-- [ ]   implement accented steps
-
 ### In Progress
+
+- [ ]   implement volume slider
 
 ### Done ✓
 
+- [x]   implement accented steps
+- [x]   fix double sound when rotate and first step
 - [x]   add more instruments
 - [x]   UI improvements (alerts)
 - [x]   improve instrument selection when create new ring
