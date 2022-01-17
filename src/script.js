@@ -71,12 +71,18 @@ var app = new Vue({
         pn: null,
         mss: null,
         c: null,
-        showNewRings: false,
-        showNewInstruments: false,
-        showNewColor: false,
-        showRandomRings: false,
-        selectedRandomRings: null,
-        selectedRandomProbability: null
+        showNewRings : false,
+        showNewInstruments : false,
+        showNewColor : false,
+        showRandomRings : false,
+        selectedRandomRings : null,
+        selectedRandomProbability : null,
+        showRandomProbability : false,
+        showNewState : false,
+        newStateName : null,
+        showStateSaved: false,
+        showRingAdded : false,
+        showRandomCreated : false
     },
     methods: {
         reset: function() {
@@ -169,6 +175,9 @@ var app = new Vue({
                 this.players.push(new Tone.Player(
                     this.instruments[instrument].audio
                 ).toDestination())
+
+                this.selectedRandomRings = null;
+                this.selectedRandomProbability = null;
             }
         },
 
@@ -233,7 +242,6 @@ var app = new Vue({
             }
 
             documentReference.update({ rings: rings });
-            alert('State saved with success!');
         },
 
         loadState: function(state) {
@@ -604,7 +612,12 @@ var app = new Vue({
                     color
                 )
             );
-            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());
+            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());   
+            }
+
+            this.selectedNewInstrument = null;
+            this.selectedNewColor = null;
+            this.selectedSteps = null;
         },
 
         draw: function() {
@@ -694,13 +707,14 @@ var app = new Vue({
                 this.ringHighlighted != null ? "pointer" : "default";
         },
 
-        createNewState: function() {
-            let stateName = prompt("Please enter the new state name:", "");
+        createNewState: function(stateName) {
+            //let stateName = prompt("Please enter the new state name:", "");
             if (stateName == null || stateName == "") {
                 alert("Error: You can't create a state with an empty name!");
             } else {
                 this.uploadNewState(stateName)
             }
+            this.newStateName = null;
         }
     }
 });
@@ -784,6 +798,7 @@ const audioPack = [{
         audio: require('./resources/audio/tom1.wav')
     }
 ];
+
 
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing();
