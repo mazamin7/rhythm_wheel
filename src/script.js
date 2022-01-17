@@ -107,7 +107,7 @@ var app = new Vue({
 
             this.pn = this.c.createScriptProcessor(1024, 1, 1);
             this.pn.onaudioprocess = function(event) {
-                if (app.random.length < 10000)
+                if (app.random.length < 100)
                     app.random.push(event.inputBuffer.getChannelData(0).slice());
             };
             this.mss.connect(this.pn);

@@ -58,6 +58,9 @@
                     <img class="play-pause-image" src="resources/images/play-button-circled.png" />
                 </a>
             </b-button>
+            <b-button variant="outline-info" pill v-on:click="showNewRings=true; showRandomRings=true;">
+                <img class="play-pause-image" src="resources/images/random--button.png" />
+            </b-button>
         </div>
         <div class="speed-container">
             <b-form-input class="speed-slider" type="range" v-model="speed" min="1" max="100"></b-form-input>
@@ -191,8 +194,16 @@
                         </div>
                       </template>
                 </v-select>
-                <div class="buttons-container">
+
+                <div class="buttons-container" v-if="!showNewRings">
+                    <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
+                        <img class="image" src="resources/images/minus--math-button.png" />
+                    </b-button>
+                    <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
+                        <img class="image" src="resources/images/plus--math--button.png" />
+                    </b-button>
                 </div>
+
             </div>
             <div class="menu-option-container">
                 <label>Instrument:</label>
@@ -204,19 +215,6 @@
                 <v-select :disabled="selectedRing == null" :options="colors" @input="changeRingColor(selectedRing - 1, selectedColor)" class="select" v-model="selectedColor">
                 </v-select>
             </div>
-        </div>
-        <div class="buttons-container" v-if="!showNewRings">
-            <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
-                <img class="image" src="resources/images/minus--math-button.png" />
-            </b-button>
-            <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                <img class="image" src="resources/images/plus--math--button.png" />
-            </b-button>
-        </div>
-        <div class="buttons-container" v-if="!showNewRings">
-            <b-button variant="info" pill v-on:click="showNewRings=true; showRandomRings=true;">
-                <img class="image" src="resources/images/random--button.png" />
-            </b-button>
         </div>
         <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
             <canvas ref="myCanvas" id="canvas"></canvas>
