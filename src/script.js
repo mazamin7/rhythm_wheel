@@ -79,7 +79,10 @@ var app = new Vue({
         selectedRandomProbability : null,
         showRandomProbability : false,
         showNewState : false,
-        newStateName : null
+        newStateName : null,
+        showStateSaved: false,
+        showRingAdded : false,
+        showRandomCreated : false
     },
     methods: {
         reset: function() {
@@ -252,7 +255,6 @@ var app = new Vue({
             }
 
             documentReference.update({ rings: rings });
-            alert('State saved with success!');
         },
 
         loadState: function(state) {
@@ -827,6 +829,7 @@ const audioPack = [{
         audio : require('url:./resources/audio/tom1.wav')
     }
 ];
+
 
 app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
