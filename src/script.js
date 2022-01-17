@@ -71,18 +71,18 @@ var app = new Vue({
         pn: null,
         mss: null,
         c: null,
-        showNewRings : false,
-        showNewInstruments : false,
-        showNewColor : false,
-        showRandomRings : false,
-        selectedRandomRings : null,
-        selectedRandomProbability : null,
-        showRandomProbability : false,
-        showNewState : false,
-        newStateName : null,
+        showNewRings: false,
+        showNewInstruments: false,
+        showNewColor: false,
+        showRandomRings: false,
+        selectedRandomRings: null,
+        selectedRandomProbability: null,
+        showRandomProbability: false,
+        showNewState: false,
+        newStateName: null,
         showStateSaved: false,
-        showRingAdded : false,
-        showRandomCreated : false
+        showRingAdded: false,
+        showRandomCreated: false
     },
     methods: {
         reset: function() {
@@ -612,8 +612,7 @@ var app = new Vue({
                     color
                 )
             );
-            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());   
-            }
+            this.players.push(new Tone.Player(this.instruments[instrument].audio).toDestination());
 
             this.selectedNewInstrument = null;
             this.selectedNewColor = null;

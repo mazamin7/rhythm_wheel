@@ -12,25 +12,26 @@
 <body>
     <div id="app">
         <b-navbar toggleable="lg" type="dark" variant="dark" fixed class="navbar">
-            
+
             <b-navbar-brand href="#canvas">
-               Rhythm Wheel <b-avatar icon="music-note"></b-avatar>
+                Rhythm Wheel
+                <b-avatar icon="music-note"></b-avatar>
             </b-navbar-brand>
         </b-navbar>
-        
+
         <b-alert class="alert" v-model="showStateSaved" variant="success" dismissible>
             State saved with success!
-          </b-alert>
+        </b-alert>
 
-          <b-alert class="alert" v-model="showRingAdded" variant="success" dismissible>
+        <b-alert class="alert" v-model="showRingAdded" variant="success" dismissible>
             Ring added with success!
-          </b-alert>
+        </b-alert>
 
-          <b-alert class="alert" v-model="showRandomCreated" variant="success" dismissible>
+        <b-alert class="alert" v-model="showRandomCreated" variant="success" dismissible>
             Random rhythm created with success!
-          </b-alert>
+        </b-alert>
 
-<!--
+        <!--
           <b-alert
       :show="dismissCountDown"
       dismissible
@@ -55,7 +56,7 @@
             <b-button variant="outline-success" pill :disabled="getStatus() == 1" v-on:click="play()">
                 <a href="#canvas">
                     <img class="play-pause-image" src="resources/images/play-button-circled.png" />
-                </a> 
+                </a>
             </b-button>
         </div>
         <div class="speed-container">
@@ -69,7 +70,7 @@
                     <div>
                         <b-form-spinbutton v-model="selectedSteps" min="1" max="16"></b-form-spinbutton>
                     </div>
-                </template> 
+                </template>
                 <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxSteps, 1)" label="name" class="select" v-model="selectedSteps"></v-select>-->
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; selectedSteps=null">Cancel</b-button>
@@ -89,7 +90,7 @@
                 <v-select ref="newColorSelector" :options="colors" label="name" class="select" v-model="selectedNewColor"></v-select>
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showNewColor=false; selectedNewInstrument=null; selectedSteps=null; selectedNewColor=null;">Cancel</b-button>
-                    <b-button variant="success"  v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true" :disabled="!selectedNewColor">Submit</b-button>
+                    <b-button variant="success" v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true" :disabled="!selectedNewColor">Submit</b-button>
                 </div>
             </div>
 
@@ -99,20 +100,20 @@
                     <div>
                       <b-form-spinbutton v-model="selectedRandomRings" min="1" max="8"></b-form-spinbutton>
                     </div>
-                  </template>   
+                  </template>
                 <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxRings, 1)" label="name" class="select" v-model="selectedRandomRings"></v-select>-->
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showRandomRings=false; selectedRandomRings=null;">Cancel</b-button>
                     <b-button variant="success" v-on:click="showRandomProbability=true; showRandomRings=false;" :disabled="selectedRandomRings==null">Submit</b-button>
-                </div>    
+                </div>
             </div>
             <div class="new-steps" v-if="showRandomProbability">
-                <label>Random Probability:</label>  
+                <label>Random Probability:</label>
                 <template>
                     <div>
-                        <b-form-spinbutton v-model="selectedRandomProbability" min="0" max="1" step="0.01"></b-form-spinbutton>
+                        <b-form-spinbutton v-model="selectedRandomProbability" min="0" max="1" step="0.1"></b-form-spinbutton>
                     </div>
-                </template>      
+                </template>
                 <!--<v-select ref="stepsSelector" :options="range(0, 1, 0.01)" label="name" class="select" v-model="selectedRandomProbability"></v-select>-->
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; selectedRandomRings=null; selectedRandomProbability=null;">Cancel</b-button>
