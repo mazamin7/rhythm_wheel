@@ -58,116 +58,116 @@
         height="4px"
       ></b-progress>
     </b-alert>-->
-    <div class="buttons-and-speed-container"  v-if="!showNewRings">
-        <div class="buttons-container">
-            <b-button variant="outline-info" pill :disabled="!getStatus()" class="disabled-button" v-on:click="pause()">
-                <img class="play-pause-image" src="resources/images/pause--button.png" />
-            </b-button>
-            <b-button variant="outline-success" pill :disabled="getStatus() == 1" v-on:click="play()">
-                <img class="play-pause-image" src="resources/images/play-button-circled.png" />
-            </b-button>
-            <b-button variant="outline-info" pill v-on:click="showNewRings=true; showRandomRings=true;">
-                <img class="play-pause-image" src="resources/images/random--button.png" />
-            </b-button>
+        <div class="buttons-and-speed-container" v-if="!showNewRings">
+            <div class="buttons-container">
+                <b-button variant="outline-info" pill :disabled="!getStatus()" class="disabled-button" v-on:click="pause()">
+                    <img class="play-pause-image" src="resources/images/pause--button.png" />
+                </b-button>
+                <b-button variant="outline-success" pill :disabled="getStatus() == 1" v-on:click="play()">
+                    <img class="play-pause-image" src="resources/images/play-button-circled.png" />
+                </b-button>
+                <b-button variant="outline-info" pill v-on:click="showNewRings=true; showRandomRings=true;">
+                    <img class="play-pause-image" src="resources/images/random--button.png" />
+                </b-button>
+            </div>
             <div class="speed-container">
                 <b-form-input class="speed-slider" type="range" v-model="speed" min="1" max="100"></b-form-input>
                 <label style="margin-top: 4px; margin-bottom: 10px;">RPM : {{speed}}</label>
             </div>
-        </div>
-        <div v-if="showNewRings" class="new-container">
-            <div class="new-steps" v-if="!showNewInstruments && !showNewColor && !showRandomRings && !showRandomProbability && !showNewState && !showRandomVolume && !showRandomPhase">
-                <label>Number of steps:</label>
-                <template>
+            <div v-if="showNewRings" class="new-container">
+                <div class="new-steps" v-if="!showNewInstruments && !showNewColor && !showRandomRings && !showRandomProbability && !showNewState && !showRandomVolume && !showRandomPhase">
+                    <label>Number of steps:</label>
+                    <template>
                     <div>
                         <b-form-spinbutton class="spinbutton" v-model="selectedSteps" min="1" max="16"></b-form-spinbutton>
                     </div>
                 </template>
-                <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxSteps, 1)" label="name" class="select" v-model="selectedSteps"></v-select>-->
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; selectedSteps=null">Cancel</b-button>
-                    <b-button variant="success" v-on:click="showNewInstruments=true" :disabled="!selectedSteps">Submit</b-button>
+                    <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxSteps, 1)" label="name" class="select" v-model="selectedSteps"></v-select>-->
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; selectedSteps=null">Cancel</b-button>
+                        <b-button variant="success" v-on:click="showNewInstruments=true" :disabled="!selectedSteps">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-instrument" v-if="showNewInstruments">
-                <label>Instrument:</label>
-                <v-select ref="newInstrumentSelector" :options="instruments" label="name" class="select" v-model="selectedNewInstrument"></v-select>
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showNewInstruments=false; selectedNewInstrument=null; selectedSteps=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="selectNewInstrument()" :disabled="!selectedNewInstrument">Submit</b-button>
+                <div class="new-instrument" v-if="showNewInstruments">
+                    <label>Instrument:</label>
+                    <v-select ref="newInstrumentSelector" :options="instruments" label="name" class="select" v-model="selectedNewInstrument"></v-select>
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showNewInstruments=false; selectedNewInstrument=null; selectedSteps=null;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="selectNewInstrument()" :disabled="!selectedNewInstrument">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-color" v-if="showNewColor">
-                <label>Color:</label>
-                <v-select ref="newColorSelector" :options="colors" label="name" class="select" v-model="selectedNewColor"></v-select>
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showNewColor=false; selectedNewInstrument=null; selectedSteps=null; selectedNewColor=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true; showNewRings = false; showNewInstruments = false; showNewColor = false;" :disabled="!selectedNewColor">Submit</b-button>
+                <div class="new-color" v-if="showNewColor">
+                    <label>Color:</label>
+                    <v-select ref="newColorSelector" :options="colors" label="name" class="select" v-model="selectedNewColor"></v-select>
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showNewColor=false; selectedNewInstrument=null; selectedSteps=null; selectedNewColor=null;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="addRing(selectedSteps, selectedNewInstrument, selectedNewColor); showRingAdded=true; showNewRings = false; showNewInstruments = false; showNewColor = false;" :disabled="!selectedNewColor">Submit</b-button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="new-steps" v-if="showRandomRings">
-                <label>Number of rings:</label>
-                <template>
+                <div class="new-steps" v-if="showRandomRings">
+                    <label>Number of rings:</label>
+                    <template>
                     <div>
                       <b-form-spinbutton class="spinbutton" v-model="selectedRandomRings" min="1" max="8"></b-form-spinbutton>
                     </div>
                   </template>
-                <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxRings, 1)" label="name" class="select" v-model="selectedRandomRings"></v-select>-->
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showRandomRings=false; selectedRandomRings=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="showRandomProbability=true; showRandomRings=false;" :disabled="selectedRandomRings==null">Submit</b-button>
+                    <!--<v-select ref="stepsSelector" :options="range(1, numeroMaxRings, 1)" label="name" class="select" v-model="selectedRandomRings"></v-select>-->
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showRandomRings=false; selectedRandomRings=null;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="showRandomProbability=true; showRandomRings=false;" :disabled="selectedRandomRings==null">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-steps" v-if="showRandomProbability">
-                <label>Random probability:</label>
-                <template>
+                <div class="new-steps" v-if="showRandomProbability">
+                    <label>Random probability:</label>
+                    <template>
                     <div>
                         <b-form-spinbutton class="spinbutton" v-model="selectedRandomProbability" min="0" max="1" step="0.1"></b-form-spinbutton>
                     </div>
                 </template>
-                <!--<v-select ref="stepsSelector" :options="range(0, 1, 0.01)" label="name" class="select" v-model="selectedRandomProbability"></v-select>-->
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; selectedRandomRings=null; selectedRandomProbability=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="showRandomProbability=false;  showRandomVolume=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    <!--<v-select ref="stepsSelector" :options="range(0, 1, 0.01)" label="name" class="select" v-model="selectedRandomProbability"></v-select>-->
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; selectedRandomRings=null; selectedRandomProbability=null;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="showRandomProbability=false;  showRandomVolume=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-steps" v-if="showRandomVolume">
-                <label>Randomize Volume:</label>
-                <label class="switch">
+                <div class="new-steps" v-if="showRandomVolume">
+                    <label>Randomize volume:</label>
+                    <label class="switch">
                     <input type="checkbox" v-model="randomizeVolume" checked/>
                     <span class="slider round"></span>
                   </label>
-                  <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; showRandomVolume=false; selectedRandomRings=null; selectedRandomProbability=null; randomizeVolume=false;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="showRandomVolume=false; showRandomPhase=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; showRandomVolume=false; selectedRandomRings=null; selectedRandomProbability=null; randomizeVolume=false;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="showRandomVolume=false; showRandomPhase=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-steps" v-if="showRandomPhase">
-                <label>Randomize Phase:</label>
-                <label class="switch">
+                <div class="new-steps" v-if="showRandomPhase">
+                    <label>Randomize phase:</label>
+                    <label class="switch">
                     <input type="checkbox" v-model="randomizePhase" checked/>
                     <span class="slider round"></span>
                   </label>
-                  <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; showRandomVolume=false; showRandomPhase=false; selectedRandomRings=null; selectedRandomProbability=null; randomizeVolume=false; randomizePhase=false;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="randomize(randomizePhase, randomizeVolume); showRandomPhase=false; showNewRings=false; showRandomCreated=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showRandomProbability=false; showRandomVolume=false; showRandomPhase=false; selectedRandomRings=null; selectedRandomProbability=null; randomizeVolume=false; randomizePhase=false;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="randomize(randomizePhase, randomizeVolume); showRandomPhase=false; showNewRings=false; showRandomCreated=true;" :disabled="selectedRandomRings==null || selectedRandomProbability==null">Submit</b-button>
+                    </div>
                 </div>
-            </div>
-            <div class="new-steps" v-if="showNewState">
-                <label>State name:</label>
-                <b-form-input style="margin-top: 10px;" type="text" v-model="newStateName" maxlength=16></b-form-input>
-                <div class="buttons-container">
-                    <b-button variant="danger" v-on:click="showNewRings=false; showNewState=false; newStateName=null;">Cancel</b-button>
-                    <b-button variant="success" v-on:click="createNewState(newStateName); showNewRings=false; showNewState=false; showNewStateCreated=true" :disabled="newStateName==null">Submit</b-button>
+                <div class="new-steps" v-if="showNewState">
+                    <label>State name:</label>
+                    <b-form-input style="margin-top: 10px;" type="text" v-model="newStateName" maxlength=16></b-form-input>
+                    <div class="buttons-container">
+                        <b-button variant="danger" v-on:click="showNewRings=false; showNewState=false; newStateName=null;">Cancel</b-button>
+                        <b-button variant="success" v-on:click="createNewState(newStateName); showNewRings=false; showNewState=false; showNewStateCreated=true" :disabled="newStateName==null">Submit</b-button>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="menu-container" v-if="!showNewRings">
-            <div class="menu-option-container">
-                <label>Library:</label>
-                <v-select ref="stateSelector" :options="states" label="name" class="select" v-model="selectedState" placeholder="Select a rhythm...">
-                    <template v-slot:option="option">
+            </div>
+            <div class="menu-container" v-if="!showNewRings">
+                <div class="menu-option-container">
+                    <label>Library:</label>
+                    <v-select ref="stateSelector" :options="states" label="name" class="select" v-model="selectedState" placeholder="Select a rhythm...">
+                        <template v-slot:option="option">
                         <div v-if="option.name!='Add New'" class="inside-ring-select">
                         <p>{{option.name}}</p>
                         <b-button variant="outline-danger" class="button-inside-select" pill v-on:click="deleteState($event, option.id)">
@@ -182,29 +182,29 @@
                             </b-button>
                         </div>
                       </template>
-                </v-select>
-                <div class="buttons-container">
-                    <b-button variant="outline-info" pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings); showUploadedState=true;">
-                        <!-- <img class="image" src="resources/images/load-download-icon.png" /> -->
-                        <img class="image" src="resources/images/download--button.png" />
-                    </b-button>
-                    <b-button variant="outline-success" pill :disabled="selectedState == null" v-on:click="saveState(selectedState.id); showStateSaved=true">
-                        <!--<img class="image" src="resources/images/load2-upload-icon.png" /> -->
-                        <img class="image" src="resources/images/save--button.png" />
-                    </b-button>
+                    </v-select>
+                    <div class="buttons-container">
+                        <b-button variant="outline-info" pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings); showUploadedState=true;">
+                            <!-- <img class="image" src="resources/images/load-download-icon.png" /> -->
+                            <img class="image" src="resources/images/download--button.png" />
+                        </b-button>
+                        <b-button variant="outline-success" pill :disabled="selectedState == null" v-on:click="saveState(selectedState.id); showStateSaved=true">
+                            <!--<img class="image" src="resources/images/load2-upload-icon.png" /> -->
+                            <img class="image" src="resources/images/save--button.png" />
+                        </b-button>
+                    </div>
+                    <div v-if="showAddState" class="buttons-container">
+                        <b-form-input v-model="stateName" placeholder="State name"></b-form-input>
+                        <b-button pill :disabled="stateName == null || stateName.trim() == '' " v-on:click="newState(stateName)">
+                            <!--<img class="image" src="resources/images/Graphicloads-Colorful-Long-Shadow-New.ico" />-->
+                            <img class="image" src="resources/images/add--property.png" />
+                        </b-button>
+                    </div>
                 </div>
-                <div v-if="showAddState" class="buttons-container">
-                    <b-form-input v-model="stateName" placeholder="State name"></b-form-input>
-                    <b-button pill :disabled="stateName == null || stateName.trim() == '' " v-on:click="newState(stateName)">
-                        <!--<img class="image" src="resources/images/Graphicloads-Colorful-Long-Shadow-New.ico" />-->
-                        <img class="image" src="resources/images/add--property.png" />
-                    </b-button>
-                </div>
-            </div>
-            <div class="menu-option-container">
-                <label>Rings:</label>
-                <v-select :options="range(1, this.rings.length + 1, 1)" class="select" v-model="selectedRing" @input="selectRing(selectedRing)" placeholder="Select a ring...">
-                    <template v-slot:option="option">
+                <div class="menu-option-container">
+                    <label>Rings:</label>
+                    <v-select :options="range(1, this.rings.length + 1, 1)" class="select" v-model="selectedRing" @input="selectRing(selectedRing)" placeholder="Select a ring...">
+                        <template v-slot:option="option">
                         <div v-if="option.label <= rings.length" class="inside-ring-select">
                         <p>{{option.label}}</p>
                         <b-button variant="outline-danger" class="button-inside-select" pill v-on:click="deleteRing($event, option.label - 1)">
@@ -220,41 +220,41 @@
                             </b-button>
                         </div>
                       </template>
-                </v-select>
-            </div>
-        </div>
-        <div class="selected-ring-options" v-if="!showNewRings">
-            <div class="menu-option-container">
-                <label>Steps:</label>
-                <div class="buttons-container" v-if="!showNewRings">
-                    <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
-                        <img class="image" src="resources/images/minus--math-button.png" />
-                    </b-button>
-                    <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
-                        <img class="image" src="resources/images/plus--math--button.png" />
-                    </b-button>
+                    </v-select>
                 </div>
             </div>
-            <div class="menu-option-container">
-                <label>Instrument:</label>
-                <v-select :disabled="selectedRing == null" :options="instruments" label="name" @input="changeRingInstrument(selectedRing - 1, selectedInstrument)" class="select" v-model="selectedInstrument">
-                </v-select>
+            <div class="selected-ring-options" v-if="!showNewRings">
+                <div class="menu-option-container">
+                    <label>Steps:</label>
+                    <div class="buttons-container" v-if="!showNewRings">
+                        <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
+                            <img class="image" src="resources/images/minus--math-button.png" />
+                        </b-button>
+                        <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 1)" v-on:click="changeRingSteps(selectedRing - 1, 1)">
+                            <img class="image" src="resources/images/plus--math--button.png" />
+                        </b-button>
+                    </div>
+                </div>
+                <div class="menu-option-container">
+                    <label>Instrument:</label>
+                    <v-select :disabled="selectedRing == null" :options="instruments" label="name" @input="changeRingInstrument(selectedRing - 1, selectedInstrument)" class="select" v-model="selectedInstrument">
+                    </v-select>
+                </div>
+                <div class="menu-option-container">
+                    <label>Color:</label>
+                    <v-select style="margin-bottom: 40px;" :disabled="selectedRing == null" :options="colors" @input="changeRingColor(selectedRing - 1, selectedColor)" class="select" v-model="selectedColor">
+                    </v-select>
+                </div>
+                <div class="menu-option-container">
+                    <label>Volume : {{Math.round(selectedVolume*100)/100}} dB</label>
+                    <b-form-input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
+                </div>
             </div>
-            <div class="menu-option-container">
-                <label>Color:</label>
-                <v-select style="margin-bottom: 40px;" :disabled="selectedRing == null" :options="colors" @input="changeRingColor(selectedRing - 1, selectedColor)" class="select" v-model="selectedColor">
-                </v-select>
-            </div>
-            <div class="menu-option-container">
-                <label>Volume : {{Math.round(selectedVolume*100)/100}} dB</label>
-                <b-form-input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
+            <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
+                <canvas ref="myCanvas" id="canvas"></canvas>
             </div>
         </div>
-        <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
-            <canvas ref="myCanvas" id="canvas"></canvas>
-        </div>
-    </div>
-    <script type="module" src="script.js"></script>
+        <script type="module" src="script.js"></script>
 </body>
 
 </html>
