@@ -203,7 +203,7 @@ var app = new Vue({
 
         uploadNewState: function(name) {
             let state = {}
-            state.name = name.trim().slice(0, 10)
+            state.name = name.trim().slice(0, 16)
             state.rings = []
 
             this.showAddState = false;
@@ -462,7 +462,7 @@ var app = new Vue({
 
             setInterval(function() {
                 if (app.playPause) {
-                    app.currentDegree += 2 * 2 * Math.PI * app.speed / 100 / 60;
+                    app.currentDegree += 2 * Math.PI * app.speed / 2000;
 
                     if (app.currentDegree >= 2 * Math.PI) {
                         app.currentDegree = 0;
@@ -471,7 +471,7 @@ var app = new Vue({
 
                     app.playSound();
                 }
-            }, 10);
+            }, 20);
 
             this.draw();
             await this.randomPoolFiller();
@@ -918,4 +918,4 @@ const audioPack = [{
 */
 
 app.init(50, 25, 10, audioPack.sort((a, b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
-for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
+for (var i = 0; i < 4; ++i) app.addRing(8, 0, "blue");

@@ -7,14 +7,14 @@ body {
     justify-content: center;
 }
 
-.alert{
+.alert {
     position: fixed;
     left: 0;
     bottom: 0;
-    width : 100%;
+    width: 100%;
 }
 
-.disabled-button{
+.disabled-button {
     cursor: not-allowed;
 }
 
@@ -23,13 +23,13 @@ body {
     margin: 10px 20px 0px 20px;
 }
 
-.spinbutton{
-    width : 100%;
+.spinbutton {
+    width: 100%;
     margin: 10px 0px 0px 0px;
 }
 
-label{
-    margin-top : 15px;
+label {
+    margin-top: 15px;
 }
 
 .menu-option-container {
@@ -38,13 +38,13 @@ label{
     align-items: center;
 }
 
-.selected-ring-options{
+.selected-ring-options {
     display: flex;
     justify-content: space-around;
-    border : 0.1px solid #aaa;
-    border-radius : 20px;
-    background-color:rgb(223, 242, 253);
-    margin-top : 2px;
+    border: 0.1px solid #aaa;
+    border-radius: 20px;
+    background-color: rgb(223, 242, 253);
+    margin-top: 2px;
     margin-bottom: 2px;
 }
 
@@ -55,21 +55,21 @@ label{
     margin-bottom: 20px;
 }
 
-.buttons-and-speed-container{
-    background-color:rgb(223, 242, 253);
-    border : 0.1px solid #aaa;
-    border-radius : 20px;
-    margin-top : 2px;
+.buttons-and-speed-container {
+    background-color: rgb(223, 242, 253);
+    border: 0.1px solid #aaa;
+    border-radius: 20px;
+    margin-top: 2px;
     margin-bottom: 2px;
 }
 
 .menu-container {
     display: flex;
     justify-content: center;
-    background-color:rgb(223, 242, 253);
-    border : 0.1px solid #aaa;
-    border-radius : 20px;
-    margin-top : 2px;
+    background-color: rgb(223, 242, 253);
+    border: 0.1px solid #aaa;
+    border-radius: 20px;
+    margin-top: 2px;
     margin-bottom: 2px;
 }
 
@@ -105,7 +105,7 @@ label {
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
-    width : 200px;
+    width: 200px;
 }
 
 .image {
@@ -152,25 +152,25 @@ label {
     width: 1.6em;
 }
 
-.new-container{
+.new-container {
     display: flex;
     justify-content: center;
-    margin : 6em 0;
+    margin: 6em 0;
 }
 
-.new-steps{
+.new-steps {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.new-instrument{
+.new-instrument {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.new-color{
+.new-color {
     display: flex;
     flex-direction: column;
     align-items: center;
