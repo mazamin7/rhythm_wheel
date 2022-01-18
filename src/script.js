@@ -113,7 +113,7 @@ var app = new Vue({
         randomizeVolume: false,
         randomizePhase: false,
         showNewStateCreated: false,
-        showUploadedState: false
+        showDownloadedState: false
     },
     methods: {
         reset: function() {

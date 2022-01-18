@@ -26,11 +26,11 @@
         </b-alert>
 
         <b-alert class="alert" v-model="showNewStateCreated" variant="success" dismissible>
-            New rhythm created with success!
+            New state slot created successfully!
         </b-alert>
 
-        <b-alert class="alert" v-model="showUploadedState" variant="success" dismissible>
-            Rhythm uploaded with success!
+        <b-alert class="alert" v-model="showDownloadedState" variant="success" dismissible>
+            State loaded successfully!
         </b-alert>
 
         <b-alert class="alert" v-model="showRingAdded" variant="success" dismissible>
@@ -167,8 +167,8 @@
         </div>
         <div class="menu-container" v-if="!showNewRings">
             <div class="menu-option-container">
-                <label>Library:</label>
-                <v-select style="width: 260px;" ref="stateSelector" :options="states" label="name" class="select" v-model="selectedState" placeholder="Select a rhythm...">
+                <label>States:</label>
+                <v-select style="width: 260px;" ref="stateSelector" :options="states" label="name" class="select" v-model="selectedState" placeholder="Select a slot...">
                     <template v-slot:option="option">
                         <div v-if="option.name!='Add New'" class="inside-ring-select">
                         <p>{{option.name}}</p>
@@ -186,7 +186,7 @@
                       </template>
                 </v-select>
                 <div class="buttons-container">
-                    <b-button variant="outline-info" pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings); showUploadedState=true;">
+                    <b-button variant="outline-info" pill :disabled="selectedState == null" v-on:click="loadState(selectedState.rings); showDownloadedState=true;">
                         <!-- <img class="image" src="resources/images/load-download-icon.png" /> -->
                         <img class="image" src="resources/images/download--button.png" />
                     </b-button>
