@@ -87,7 +87,13 @@ var app = new Vue({
         newStateName: null,
         showStateSaved: false,
         showRingAdded: false,
-        showRandomCreated: false
+        showRandomCreated: false,
+        showRandomVolume : false,
+        showRandomPhase : false,
+        randomizeVolume : false,
+        randomizePhase : false,
+        showNewStateCreated : false,
+        showUploadedState : false
     },
     methods: {
         reset: function() {
@@ -184,6 +190,8 @@ var app = new Vue({
 
                 this.selectedRandomRings = null;
                 this.selectedRandomProbability = null;
+                this.selectedRing = null;
+                window.location.href = "#canvas";
             }
         },
 
@@ -216,6 +224,8 @@ var app = new Vue({
                 .catch(function() {
                     alert("Internal error: can't upload state to database")
                 });
+
+            window.location.href = "#canvas";
         },
 
         deleteState: function(event, id) {
@@ -249,6 +259,7 @@ var app = new Vue({
             }
 
             documentReference.update({ rings: rings });
+            window.location.href = "#canvas";
         },
 
         loadState: function(state) {
@@ -504,6 +515,7 @@ var app = new Vue({
 
         play: function() {
             this.playPause = 1;
+            window.location.href="#canvas";
         },
 
         pause: function() {
@@ -616,6 +628,10 @@ var app = new Vue({
             this.selectedNewInstrument = null;
             this.selectedNewColor = null;
             this.selectedSteps = null;
+            this.selectedRing = null;
+            this.selectedInstrument = null;
+            this.selectedColor = null;
+            window.location.href = "#canvas";
         },
 
         draw: function() {
