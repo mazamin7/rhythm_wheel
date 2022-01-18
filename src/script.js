@@ -203,7 +203,7 @@ var app = new Vue({
 
         uploadNewState: function(name) {
             let state = {}
-            state.name = name.trim()
+            state.name = name.trim().slice(0, 10)
             state.rings = []
 
             this.showAddState = false;
@@ -759,7 +759,7 @@ var app = new Vue({
 });
 
 window.app = app;
-/*
+
 const audioPack = [{
         instrument: "Gong 1",
         audio: require('./resources/audio/gong_1.mp3')
@@ -836,8 +836,8 @@ const audioPack = [{
         instrument: "Tom 1",
         audio: require('./resources/audio/tom1.wav')
     }
-];*/
-
+];
+/*
 const audioPack = [{
     instrument: "Gong 1",
     audio: require('url:./resources/audio/gong_1.mp3')
@@ -915,7 +915,7 @@ const audioPack = [{
     audio: require('url:./resources/audio/tom1.wav')
 }
 ];
+*/
 
-
-app.init(50, 25, 10, audioPack.sort((a,b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
+app.init(50, 25, 10, audioPack.sort((a, b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");

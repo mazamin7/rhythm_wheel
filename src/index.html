@@ -48,25 +48,25 @@
         height="4px"
       ></b-progress>
     </b-alert>-->
-    <div class="buttons-and-speed-container">
-        <div class="buttons-container">
-            <b-button variant="outline-info" pill :disabled="!getStatus()" class="disabled-button" v-on:click="pause()">
-                <img class="play-pause-image" src="resources/images/pause--button.png" />
-            </b-button>
-            <b-button variant="outline-success" pill :disabled="getStatus() == 1" v-on:click="play()">
-                <a href="#canvas">
-                    <img class="play-pause-image" src="resources/images/play-button-circled.png" />
-                </a>
-            </b-button>
-            <b-button variant="outline-info" pill v-on:click="showNewRings=true; showRandomRings=true;">
-                <img class="play-pause-image" src="resources/images/random--button.png" />
-            </b-button>
+        <div class="buttons-and-speed-container">
+            <div class="buttons-container">
+                <b-button variant="outline-info" pill :disabled="!getStatus()" class="disabled-button" v-on:click="pause()">
+                    <img class="play-pause-image" src="resources/images/pause--button.png" />
+                </b-button>
+                <b-button variant="outline-success" pill :disabled="getStatus() == 1" v-on:click="play()">
+                    <a href="#canvas">
+                        <img class="play-pause-image" src="resources/images/play-button-circled.png" />
+                    </a>
+                </b-button>
+                <b-button variant="outline-info" pill v-on:click="showNewRings=true; showRandomRings=true;">
+                    <img class="play-pause-image" src="resources/images/random--button.png" />
+                </b-button>
+            </div>
+            <div class="speed-container">
+                <b-form-input class="speed-slider" type="range" v-model="speed" min="1" max="100"></b-form-input>
+                <label style="margin-top: 4px; margin-bottom: 10px;">RPM : {{speed}}</label>
+            </div>
         </div>
-        <div class="speed-container">
-            <b-form-input class="speed-slider" type="range" v-model="speed" min="1" max="100"></b-form-input>
-            <label style="margin-top: 4px; margin-bottom: 10px;">RPM : {{speed}}</label>
-        </div>
-    </div>
         <div v-if="showNewRings" class="new-container">
             <div class="new-steps" v-if="!showNewInstruments && !showNewColor && !showRandomRings && !showRandomProbability && !showNewState">
                 <label>Number of Steps:</label>
@@ -126,8 +126,8 @@
             </div>
 
             <div class="new-steps" v-if="showNewState">
-                <label>State Name:</label>
-                <b-form-input style="margin-top: 10px;" type="text" v-model="newStateName"></b-form-input>
+                <label>State name:</label>
+                <b-form-input style="margin-top: 10px;" type="text" v-model="newStateName" maxlength=10></b-form-input>
                 <div class="buttons-container">
                     <b-button variant="danger" v-on:click="showNewRings=false; showNewState=false; newStateName=null;">Cancel</b-button>
                     <b-button variant="success" v-on:click="createNewState(newStateName); showNewRings=false; showNewState=false;" :disabled="newStateName==null">Submit</b-button>
