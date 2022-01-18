@@ -166,7 +166,10 @@ var app = new Vue({
                 this.addRing(steps, instrument, color)
 
                 for (var j = 0; j < steps; ++j)
-                    this.rings[i].pattern[j] = Math.round(this.getRandom() * 2);
+                    if (this.getRandom() < p)
+                        this.rings[i].pattern[j] = Math.round(this.getRandom()) + 1;
+                    else
+                        this.rings[i].pattern[j] = 0
 
                 this.rings[i].phase = this.getRandom() * 2 * Math.PI
                 this.rings[i].volume = -Math.round(100 * this.getRandom() * 30) / 100 - 5
