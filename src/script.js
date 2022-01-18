@@ -12,6 +12,7 @@ Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
     authDomain: "rhythmwheel.firebaseapp.com",
@@ -882,5 +883,5 @@ const audioPack = [{
 ];
 
 
-app.init(50, 25, 10, audioPack, app.$refs.myCanvas, document);
+app.init(50, 25, 10, audioPack.sort((a,b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "red");
