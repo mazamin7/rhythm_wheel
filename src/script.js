@@ -13,6 +13,25 @@ Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+import gong_1 from 'url:./resources/audio/gong_1.mp3'
+import gong_2 from 'url:./resources/audio/gong_2.mp3'
+import shaker_1 from 'url:./resources/audio/shaker_1.mp3'
+import malevoices_aa2_F3 from 'url:./resources/audio/malevoices_aa2_F3.mp3'
+import cl_hihat from 'url:./resources/audio/cl_hihat.wav'
+import claves from 'url:./resources/audio/claves.wav'
+import conga1 from 'url:./resources/audio/conga1.wav'
+import cowbell from 'url:./resources/audio/cowbell.wav'
+import crashcym from 'url:./resources/audio/crashcym.wav'
+import handclap from 'url:./resources/audio/handclap.wav'
+import hi_conga from 'url:./resources/audio/hi_conga.wav'
+import hightom from 'url:./resources/audio/hightom.wav'
+import kick1 from 'url:./resources/audio/kick1.wav'
+import kick2 from 'url:./resources/audio/kick2.wav'
+import maracas from 'url:./resources/audio/maracas.wav'
+import open_hh from 'url:./resources/audio/open_hh.wav'
+import rimshot from 'url:./resources/audio/rimshot.wav'
+import snare from 'url:./resources/audio/snare.wav'
+import tom1 from 'url:./resources/audio/tom1.wav'
 
 const firebaseConfig = {
     apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
@@ -773,160 +792,81 @@ window.app = app;
 
 const audioPack = [{
         instrument: "Gong 1",
-        audio: require('./resources/audio/gong_1.mp3')
+        audio: gong_1
     },
     {
         instrument: "Gong 2",
-        audio: require('./resources/audio/gong_2.mp3')
+        audio: gong_2
     },
     {
         instrument: "Shaker 1",
-        audio: require('./resources/audio/shaker_1.mp3')
+        audio: shaker_1
     },
     {
         instrument: "Male voices",
-        audio: require('./resources/audio/malevoices_aa2_F3.mp3')
+        audio: malevoices_aa2_F3
     },
     {
         instrument: "Closed Hi Hats",
-        audio: require('./resources/audio/cl_hihat.wav')
+        audio: cl_hihat
     },
     {
         instrument: "Claves",
-        audio: require('./resources/audio/claves.wav')
+        audio: claves
     },
     {
         instrument: "Conga",
-        audio: require('./resources/audio/conga1.wav')
+        audio: conga1
     },
     {
         instrument: "Cowbell",
-        audio: require('./resources/audio/cowbell.wav')
+        audio: cowbell
     },
     {
         instrument: "Crash Cymbals",
-        audio: require('./resources/audio/crashcym.wav')
+        audio: crashcym
     },
     {
         instrument: "Hand Clap",
-        audio: require('./resources/audio/handclap.wav')
+        audio: handclap
     },
     {
         instrument: "Hi Conga",
-        audio: require('./resources/audio/hi_conga.wav')
+        audio: hi_conga
     },
     {
         instrument: "High Tom",
-        audio: require('./resources/audio/hightom.wav')
+        audio: hightom
     },
     {
         instrument: "Kick 1",
-        audio: require('./resources/audio/kick1.wav')
+        audio: kick1
     },
     {
         instrument: "Kick 2",
-        audio: require('./resources/audio/kick2.wav')
+        audio: kick2
     },
     {
         instrument: "Maracas",
-        audio: require('./resources/audio/maracas.wav')
+        audio: maracas
     },
     {
         instrument: "Open Hi Hats",
-        audio: require('./resources/audio/open_hh.wav')
+        audio: open_hh
     },
     {
         instrument: "Rimshot",
-        audio: require('./resources/audio/rimshot.wav')
+        audio: rimshot
     },
     {
         instrument: "Snare",
-        audio: require('./resources/audio/snare.wav')
+        audio: snare
     },
     {
         instrument: "Tom 1",
-        audio: require('./resources/audio/tom1.wav')
+        audio: tom1
     }
 ];
-/*
-const audioPack = [{
-    instrument: "Gong 1",
-    audio: require('url:./resources/audio/gong_1.mp3')
-},
-{
-    instrument: "Gong 2",
-    audio: require('url:./resources/audio/gong_2.mp3')
-},
-{
-    instrument: "Shaker 1",
-    audio: require('url:./resources/audio/shaker_1.mp3')
-},
-{
-    instrument: "Male voices",
-    audio: require('url:./resources/audio/malevoices_aa2_F3.mp3')
-},
-{
-    instrument: "Closed Hi Hats",
-    audio: require('url:./resources/audio/cl_hihat.wav')
-},
-{
-    instrument: "Claves",
-    audio: require('url:./resources/audio/claves.wav')
-},
-{
-    instrument: "Conga",
-    audio: require('url:./resources/audio/conga1.wav')
-},
-{
-    instrument: "Cowbell",
-    audio: require('url:./resources/audio/cowbell.wav')
-},
-{
-    instrument: "Crash Cymbals",
-    audio: require('url:./resources/audio/crashcym.wav')
-},
-{
-    instrument: "Hand Clap",
-    audio: require('url:./resources/audio/handclap.wav')
-},
-{
-    instrument: "Hi Conga",
-    audio: require('url:./resources/audio/hi_conga.wav')
-},
-{
-    instrument: "High Tom",
-    audio: require('url:./resources/audio/hightom.wav')
-},
-{
-    instrument: "Kick 1",
-    audio: require('url:./resources/audio/kick1.wav')
-},
-{
-    instrument: "Kick 2",
-    audio: require('url:./resources/audio/kick2.wav')
-},
-{
-    instrument: "Maracas",
-    audio: require('url:./resources/audio/maracas.wav')
-},
-{
-    instrument: "Open Hi Hats",
-    audio: require('url:./resources/audio/open_hh.wav')
-},
-{
-    instrument: "Rimshot",
-    audio: require('url:./resources/audio/rimshot.wav')
-},
-{
-    instrument: "Snare",
-    audio: require('url:./resources/audio/snare.wav')
-},
-{
-    instrument: "Tom 1",
-    audio: require('url:./resources/audio/tom1.wav')
-}
-];
-*/
 
 app.init(50, 25, 10, audioPack.sort((a, b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "blue");
