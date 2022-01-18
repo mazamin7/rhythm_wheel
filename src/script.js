@@ -7,6 +7,7 @@ import { firebase } from '@firebase/app'
 import "firebase/firestore"
 
 const Color = require('color');
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 Vue.component("v-select", vSelect);
 Vue.use(BootstrapVue)
@@ -54,6 +55,7 @@ var app = new Vue({
         canvas: null,
         context: null,
         currentDegree: 0,
+        flip: 0,
         speed: 10,
         playPause: 0,
         selectedRing: null,
@@ -91,6 +93,8 @@ var app = new Vue({
     methods: {
         reset: function() {
             this.pause()
+            this.currentDegree = 0
+            this.flip = 0
 
             for (var i = 0; i < this.rings.length; ++i)
                 this.rings[i] = null
@@ -461,6 +465,7 @@ var app = new Vue({
 
                     if (app.currentDegree >= 2 * Math.PI) {
                         app.currentDegree = 0;
+                        app.flip = 1 - app.flip
                     }
 
                     app.playSound();
@@ -720,6 +725,35 @@ var app = new Vue({
             }
             this.newStateName = null;
         }
+
+        /*
+                exportAudio: function() {
+                    var recorder = new Tone.Recorder();
+
+                    for (var i = 0; i < this.players.length; ++i) {
+                        this.players[i].connect(recorder)
+                    }
+
+                    this.flip = 0
+                    while (this.flip == 0) {
+                        var x = 0
+                    }
+                    recorder.start()
+                    while (this.flip == 1) {
+                        var x = 0
+                    }
+
+                    const recording = recorder.stop()
+                    recorder = null
+
+                    var hiddenElement = document.createElement('a');
+
+                    hiddenElement.href = 'data:audio/ogg,' + encodeURI(recording);
+                    hiddenElement.target = '_blank';
+                    hiddenElement.download = 'recording.ogg';
+                    hiddenElement.click();
+                }
+                */
     }
 });
 
