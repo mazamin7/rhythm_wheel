@@ -734,12 +734,7 @@ var app = new Vue({
         },
 
         createNewState: function(stateName) {
-            //let stateName = prompt("Please enter the new state name:", "");
-            if (stateName == null || stateName == "") {
-                alert("Error: You can't create a state with an empty name!");
-            } else {
-                this.uploadNewState(stateName)
-            }
+            this.uploadNewState(stateName)
             this.newStateName = null;
         }
 
