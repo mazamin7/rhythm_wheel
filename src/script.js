@@ -1,37 +1,37 @@
+/*jshint esversion: 9 */
 import Vue from 'vue';
 import vSelect from "vue-select";
 import * as Tone from '../node_modules/tone/build/Tone';
-import 'regenerator-runtime/runtime'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import { firebase } from '@firebase/app'
-import "firebase/firestore"
+import 'regenerator-runtime/runtime';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { firebase } from '@firebase/app';
+import "firebase/firestore";
 
 const Color = require('color');
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 Vue.component("v-select", vSelect);
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
-import gong_1 from 'url:./resources/audio/gong_1.mp3'
-import gong_2 from 'url:./resources/audio/gong_2.mp3'
-import shaker_1 from 'url:./resources/audio/shaker_1.mp3'
-import malevoices_aa2_F3 from 'url:./resources/audio/malevoices_aa2_F3.mp3'
-import cl_hihat from 'url:./resources/audio/cl_hihat.wav'
-import claves from 'url:./resources/audio/claves.wav'
-import conga1 from 'url:./resources/audio/conga1.wav'
-import cowbell from 'url:./resources/audio/cowbell.wav'
-import crashcym from 'url:./resources/audio/crashcym.wav'
-import handclap from 'url:./resources/audio/handclap.wav'
-import hi_conga from 'url:./resources/audio/hi_conga.wav'
-import hightom from 'url:./resources/audio/hightom.wav'
-import kick1 from 'url:./resources/audio/kick1.wav'
-import kick2 from 'url:./resources/audio/kick2.wav'
-import maracas from 'url:./resources/audio/maracas.wav'
-import open_hh from 'url:./resources/audio/open_hh.wav'
-import rimshot from 'url:./resources/audio/rimshot.wav'
-import snare from 'url:./resources/audio/snare.wav'
-import tom1 from 'url:./resources/audio/tom1.wav'
+import gong_1 from 'url:./resources/audio/gong_1.mp3';
+import gong_2 from 'url:./resources/audio/gong_2.mp3';
+import shaker_1 from 'url:./resources/audio/shaker_1.mp3';
+import malevoices_aa2_F3 from 'url:./resources/audio/malevoices_aa2_F3.mp3';
+import cl_hihat from 'url:./resources/audio/cl_hihat.wav';
+import claves from 'url:./resources/audio/claves.wav';
+import conga1 from 'url:./resources/audio/conga1.wav';
+import cowbell from 'url:./resources/audio/cowbell.wav';
+import crashcym from 'url:./resources/audio/crashcym.wav';
+import handclap from 'url:./resources/audio/handclap.wav';
+import hi_conga from 'url:./resources/audio/hi_conga.wav';
+import hightom from 'url:./resources/audio/hightom.wav';
+import kick1 from 'url:./resources/audio/kick1.wav';
+import kick2 from 'url:./resources/audio/kick2.wav';
+import maracas from 'url:./resources/audio/maracas.wav';
+import open_hh from 'url:./resources/audio/open_hh.wav';
+import rimshot from 'url:./resources/audio/rimshot.wav';
+import snare from 'url:./resources/audio/snare.wav';
+import tom1 from 'url:./resources/audio/tom1.wav';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDPUyE70m9dh1gMZJkGwjtIht1Ig6tMysU",
@@ -54,7 +54,7 @@ function dbCallback(snapshot) {
         ...doc.data(),
     }));
     app.states.push({ name: "Add New" });
-};
+}
 
 var app = new Vue({
     el: "#app",
@@ -67,7 +67,6 @@ var app = new Vue({
         lastRingHighlighted: null,
         lastStepHighlighted: null,
         instruments: [],
-        players: [],
         center: null,
         absMinRadius: null,
         width: null,
@@ -122,12 +121,13 @@ var app = new Vue({
             this.currentDegree = 0
             this.flip = 0
 
-            for (var i = 0; i < this.rings.length; ++i)
-                this.rings[i] = null
+            for (var i = 0; i < this.rings.length; i += 1) {
+                this.rings[i] = null;
+            }
 
             this.rings = []
 
-            for (var i = 0; i < this.players.length; ++i) {
+            for (var i = 0; i < this.players.length; i += 1) {
                 this.players[i].stop()
                 this.players[i] = null
                 this.gains[i] = null
@@ -144,8 +144,9 @@ var app = new Vue({
 
             this.pn = this.c.createScriptProcessor(1024, 1, 1);
             this.pn.onaudioprocess = function(event) {
-                if (app.random.length < 100)
+                if (app.random.length < 100) {
                     app.random.push(event.inputBuffer.getChannelData(0).slice());
+                }
             };
             this.mss.connect(this.pn);
         },
@@ -169,8 +170,9 @@ var app = new Vue({
 
                 this.random.reverse()
 
-                for (var i = 0; i < numbers.length; ++i)
-                    x += numbers[i] * 1000
+                for (var i = 0; i < numbers.length; i += 1) {
+                    x += numbers[i] * 1000;
+                }
 
                 x = Math.abs(x) % 1
             }
@@ -186,7 +188,7 @@ var app = new Vue({
             this.selectedRandomRings = null
             this.selectedRandomProbability = null
 
-            for (var i = 0; i < rings; ++i) {
+            for (var i = 0; i < rings; i += 1) {
                 const steps = Math.round(this.getRandom() * (this.numeroMaxSteps - 2)) + 2;
 
                 const instrument = Math.round(this.getRandom() * (this.instruments.length - 1));
@@ -195,21 +197,25 @@ var app = new Vue({
 
                 this.addRing(steps, instrument, color)
 
-                for (var j = 0; j < steps; ++j)
-                    if (this.getRandom() < p)
+                for (var j = 0; j < steps; j += 1) {
+                    if (this.getRandom() < p) {
                         this.rings[i].pattern[j] = Math.round(this.getRandom()) + 1;
-                    else
-                        this.rings[i].pattern[j] = 0
+                    } else {
+                        this.rings[i].pattern[j] = 0;
+                    }
+                }
 
-                if (phase == true)
-                    this.rings[i].phase = this.getRandom() * 2 * Math.PI
-                else
-                    this.rings[i].phase = 0
+                if (phase == true) {
+                    this.rings[i].phase = this.getRandom() * 2 * Math.PI;
+                } else {
+                    this.rings[i].phase = 0;
+                }
 
-                if (volume == true)
-                    this.rings[i].volume = -Math.round(2 * this.getRandom() * 30) / 2
-                else
-                    this.rings[i].volume = 0
+                if (volume == true) {
+                    this.rings[i].volume = -Math.round(2 * this.getRandom() * 30) / 2;
+                } else {
+                    this.rings[i].volume = 0;
+                }
 
                 this.selectedRandomRings = null;
                 this.selectedRandomProbability = null;
@@ -256,7 +262,7 @@ var app = new Vue({
             documentReference.delete();
 
             this.selectedState = null
-            this.$refs["stateSelector"].clearSelection()
+            this.$refs.stateSelector.clearSelection()
             event.stopPropagation()
         },
 
@@ -265,7 +271,7 @@ var app = new Vue({
 
             const rings = []
 
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 rings.push({})
 
                 rings[i].steps = this.rings[i].steps;
@@ -274,8 +280,9 @@ var app = new Vue({
 
                 rings[i].pattern = [];
 
-                for (var j = 0; j < this.rings[i].pattern.length; ++j)
+                for (var j = 0; j < this.rings[i].pattern.length; j += 1) {
                     rings[i].pattern[j] = this.rings[i].pattern[j];
+                }
 
                 rings[i].phase = this.rings[i].phase;
                 rings[i].volume = this.rings[i].volume
@@ -288,15 +295,16 @@ var app = new Vue({
         loadState: function(state) {
             this.reset()
 
-            for (var i = 0; i < state.length; ++i) {
+            for (var i = 0; i < state.length; i += 1) {
                 const steps = state[i].steps;
                 const instrument = state[i].instrument;
                 const color = state[i].color;
 
                 this.addRing(steps, instrument, color)
 
-                for (var j = 0; j < state[i].pattern.length; ++j)
+                for (var j = 0; j < state[i].pattern.length; j += 1) {
                     this.rings[i].pattern[j] = state[i].pattern[j];
+                }
 
                 this.rings[i].phase = state[i].phase;
                 this.rings[i].volume = state[i].volume
@@ -304,8 +312,12 @@ var app = new Vue({
         },
 
         normalizeAngle: function(angle) {
-            while (angle < 0) angle += 2 * Math.PI;
-            while (angle > 2 * Math.PI) angle -= 2 * Math.PI;
+            while (angle < 0) {
+                angle += 2 * Math.PI;
+            }
+            while (angle > 2 * Math.PI) {
+                angle -= 2 * Math.PI;
+            }
             return angle;
         },
 
@@ -399,7 +411,9 @@ var app = new Vue({
             this.phase = 0;
             this.volume = 0
 
-            for (var i = 0; i < steps; ++i) this.pattern.push(0);
+            for (var i = 0; i < steps; i += 1) {
+                this.pattern.push(0);
+            }
         },
 
         distanceBetween2Points: function(point1, point2) {
@@ -450,11 +464,13 @@ var app = new Vue({
 
                 var delta = this.delta(i);
 
-                for (var j = 0; j < this.rings[i].steps; ++j) {
+                for (var j = 0; j < this.rings[i].steps; j += 1) {
                     var sa = j * delta;
                     var ea = (j + 1) * delta;
 
-                    if (ea < sa) ea += 2 * Math.PI;
+                    if (ea < sa) {
+                        ea += 2 * Math.PI;
+                    }
 
                     if (a >= sa && a <= ea) {
                         return j;
@@ -487,8 +503,9 @@ var app = new Vue({
             this.canvas.addEventListener("click", this.click_mouse, false);
             this.canvas.addEventListener("wheel", this.wheel_mouse, false);
 
-            for (var i = 0; i < audioPack.length; ++i)
+            for (var i = 0; i < audioPack.length; i += 1) {
                 this.addInstrument(audioPack[i].instrument, audioPack[i].audio);
+            }
 
             setInterval(function() {
                 if (app.playPause) {
@@ -508,12 +525,15 @@ var app = new Vue({
         },
 
         rotateRings: function(mousePos, amount) {
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 if (this.isInside(i, mousePos) >= 0) {
                     this.rings[i].phase += amount;
-                    if (this.rings[i].phase < 0) this.rings[i].phase += 2 * Math.PI;
-                    if (this.rings[i].phase > 2 * Math.PI)
+                    if (this.rings[i].phase < 0) {
+                        this.rings[i].phase += 2 * Math.PI;
+                    }
+                    if (this.rings[i].phase > 2 * Math.PI) {
                         this.rings[i].phase -= 2 * Math.PI;
+                    }
                 }
             }
 
@@ -521,15 +541,16 @@ var app = new Vue({
         },
 
         playSound: function() {
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 var step = this.currentStep(i);
 
                 if (this.rings[i].pattern[step] > 0 && step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
-                    if (this.rings[i].pattern[step] == 1)
-                        this.gains[i].volume.value = this.rings[i].volume - 10
-                    else if (this.rings[i].pattern[step] == 2)
-                        this.gains[i].volume.value = this.rings[i].volume - 5
+                    if (this.rings[i].pattern[step] == 1) {
+                        this.gains[i].volume.value = this.rings[i].volume - 10;
+                    } else if (this.rings[i].pattern[step] == 2) {
+                        this.gains[i].volume.value = this.rings[i].volume - 5;
+                    }
                     this.players[i].start();
                 } else if (step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
@@ -551,12 +572,13 @@ var app = new Vue({
         },
 
         canChangeRingSteps: function(ring, mode) {
-            if (ring == null || ring < 1)
-                return false
-            else if (this.rings[ring - 1].steps < 3 && mode == 0)
-                return false
-            else if (this.rings[ring - 1].steps == this.numeroMaxSteps && mode == 1)
-                return false
+            if (ring == null || ring < 1) {
+                return false;
+            } else if (this.rings[ring - 1].steps < 3 && mode == 0) {
+                return false;
+            } else if (this.rings[ring - 1].steps == this.numeroMaxSteps && mode == 1) {
+                return false;
+            }
             return true
         },
 
@@ -582,8 +604,9 @@ var app = new Vue({
         },
 
         changeRingVolume: function(ring, volume) {
-            if (volume > 0)
-                return
+            if (volume > 0) {
+                return;
+            }
 
             this.rings[ring].volume = volume
         },
@@ -609,8 +632,9 @@ var app = new Vue({
         },
 
         selectRing: function(ring) {
-            if (ring == null)
+            if (ring == null) {
                 return;
+            }
 
             this.selectedInstrument = this.instruments[
                 this.rings[this.selectedRing - 1].instrument
@@ -620,8 +644,9 @@ var app = new Vue({
         },
 
         deleteRing: function(event, ring) {
-            if (ring == null)
+            if (ring == null) {
                 return;
+            }
 
             this.rings[ring] = null;
             this.players[ring] = null
@@ -680,7 +705,7 @@ var app = new Vue({
         },
 
         drawRings: function() {
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 const stepHighlighted =
                     this.ringHighlighted == i ? this.stepHighlighted : -1;
 
@@ -697,16 +722,18 @@ var app = new Vue({
 
                 this.context.lineWidth = maxRadius - minRadius;
 
-                for (var j = 0; j < steps; ++j) {
+                for (var j = 0; j < steps; j += 1) {
                     var colorStr = "grey"
-                    if (stepHighlighted == j && pattern[j] == 2)
-                        colorStr = Color(color).darken(0.5)
-                    if (stepHighlighted != j && pattern[j] == 2)
-                        colorStr = Color(color)
-                    else if (stepHighlighted == j && pattern[j] == 1)
-                        colorStr = Color(color).darken(0.5)
-                    else if (stepHighlighted != j && pattern[j] == 1)
-                        colorStr = Color(color).desaturate(0.5)
+                    if (stepHighlighted == j && pattern[j] == 2) {
+                        colorStr = Color(color).darken(0.5);
+                    }
+                    if (stepHighlighted != j && pattern[j] == 2) {
+                        colorStr = Color(color);
+                    } else if (stepHighlighted == j && pattern[j] == 1) {
+                        colorStr = Color(color).darken(0.5);
+                    } else if (stepHighlighted != j && pattern[j] == 1) {
+                        colorStr = Color(color).desaturate(0.5);
+                    }
                     this.context.strokeStyle = colorStr
                     this.context.beginPath();
 
@@ -723,7 +750,7 @@ var app = new Vue({
         },
 
         doTasks: function(mousePos) {
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 const res = this.isInside(i, mousePos);
 
                 if (res >= 0) {
@@ -738,7 +765,7 @@ var app = new Vue({
             this.ringHighlighted = null;
             this.stepHighlighted = null;
 
-            for (var i = 0; i < this.rings.length; ++i) {
+            for (var i = 0; i < this.rings.length; i += 1) {
                 const res = this.isInside(i, mousePos);
 
                 if (res >= 0) {
@@ -869,4 +896,6 @@ const audioPack = [{
 ];
 
 app.init(50, 25, 10, audioPack.sort((a, b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
-for (var i = 0; i < 4; ++i) app.addRing(8, 0, "blue");
+for (var i = 0; i < 4; i += 1) {
+    app.addRing(8, 0, "blue");
+}
