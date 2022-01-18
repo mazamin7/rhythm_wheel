@@ -90,12 +90,12 @@ var app = new Vue({
         showStateSaved: false,
         showRingAdded: false,
         showRandomCreated: false,
-        showRandomVolume : false,
-        showRandomPhase : false,
-        randomizeVolume : false,
-        randomizePhase : false,
-        showNewStateCreated : false,
-        showUploadedState : false
+        showRandomVolume: false,
+        showRandomPhase: false,
+        randomizeVolume: false,
+        randomizePhase: false,
+        showNewStateCreated: false,
+        showUploadedState: false
     },
     methods: {
         reset: function() {
@@ -188,7 +188,7 @@ var app = new Vue({
                     this.rings[i].phase = 0
 
                 if (volume == true)
-                    this.rings[i].volume = -Math.round(100 * this.getRandom() * 30) / 100
+                    this.rings[i].volume = -Math.round(2 * this.getRandom() * 30) / 2
                 else
                     this.rings[i].volume = 0
 
@@ -520,7 +520,7 @@ var app = new Vue({
 
         play: function() {
             this.playPause = 1;
-            window.location.href="#canvas";
+            window.location.href = "#canvas";
         },
 
         pause: function() {

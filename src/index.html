@@ -248,8 +248,8 @@
                 </v-select>
             </div>
             <div class="menu-option-container">
-                <label>Volume : {{Math.round(selectedVolume*100)/100}} dB</label>
-                <b-form-input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
+                <label>Volume : {{Math.round(selectedVolume*2)/2}} dB</label>
+                <b-form-input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" step="0.5" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
             </div>
         </div>
         <div class="canvas-container" @mouseEnter="disableScroll()" @mouseLeave="enableScroll()">
