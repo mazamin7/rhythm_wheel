@@ -783,35 +783,6 @@ var app = new Vue({
             this.uploadNewState(stateName)
             this.newStateName = null;
         }
-
-        /*
-                exportAudio: function() {
-                    var recorder = new Tone.Recorder();
-
-                    for (var i = 0; i < this.players.length; ++i) {
-                        this.players[i].connect(recorder)
-                    }
-
-                    this.flip = 0
-                    while (this.flip == 0) {
-                        var x = 0
-                    }
-                    recorder.start()
-                    while (this.flip == 1) {
-                        var x = 0
-                    }
-
-                    const recording = recorder.stop()
-                    recorder = null
-
-                    var hiddenElement = document.createElement('a');
-
-                    hiddenElement.href = 'data:audio/ogg,' + encodeURI(recording);
-                    hiddenElement.target = '_blank';
-                    hiddenElement.download = 'recording.ogg';
-                    hiddenElement.click();
-                }
-                */
     }
 });
 

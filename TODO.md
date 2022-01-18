@@ -1,12 +1,11 @@
 ### Todo
 
-- [ ]   improve volume slider graphics
-- [ ]   center graphics
-
 ### In Progress
 
 ### Done ✓
 
+- [x]   improve volume slider graphics
+- [x]   center graphics
 - [x]   implement volume slider
 - [x]   implement accented steps
 - [x]   fix double sound when rotate and first step
