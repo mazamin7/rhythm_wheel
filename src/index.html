@@ -228,7 +228,7 @@
         <div class="selected-ring-options" v-if="!showNewRings">
             <div class="menu-option-container">
                 <label>Steps:</label>
-                <div class="buttons-container" v-if="!showNewRings">
+                <div v-if="!showNewRings">
                     <b-button variant="outline-primary" pill :disabled="!canChangeRingSteps(selectedRing, 0)" v-on:click="changeRingSteps(selectedRing - 1, 0)">
                         <img class="image" src="resources/images/minus--math-button.png" />
                     </b-button>

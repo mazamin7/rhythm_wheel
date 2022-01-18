@@ -775,7 +775,7 @@ var app = new Vue({
 });
 
 window.app = app;
-
+/*
 const audioPack = [{
         instrument: "Gong 1",
         audio: require('./resources/audio/gong_1.mp3')
@@ -852,8 +852,8 @@ const audioPack = [{
         instrument: "Tom 1",
         audio: require('./resources/audio/tom1.wav')
     }
-];
-/*
+];*/
+
 const audioPack = [{
     instrument: "Gong 1",
     audio: require('url:./resources/audio/gong_1.mp3')
@@ -931,7 +931,7 @@ const audioPack = [{
     audio: require('url:./resources/audio/tom1.wav')
 }
 ];
-*/
+
 
 app.init(50, 25, 10, audioPack.sort((a, b) => a.instrument.localeCompare(b.instrument)), app.$refs.myCanvas, document);
 for (var i = 0; i < 4; ++i) app.addRing(8, 0, "blue");
