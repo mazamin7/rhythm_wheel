@@ -216,7 +216,7 @@
                 </v-select>
             </div>
             <div class="menu-option-container">
-                <label>Volume : {{Math.round(selectedVolume*100)/100}}</label>
+                <label>Volume : {{Math.round(selectedVolume*100)/100}} dB</label>
                 <div class="speed-container">
                     <b-form-input class="speed-slider" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
                 </div>
