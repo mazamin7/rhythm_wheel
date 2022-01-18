@@ -149,7 +149,7 @@ var app = new Vue({
             return x
         },
 
-        randomize: function() {
+        randomize: function(phase, volume) {
             this.reset()
             const rings = this.selectedRandomRings
             const p = this.selectedRandomProbability
@@ -171,8 +171,15 @@ var app = new Vue({
                     else
                         this.rings[i].pattern[j] = 0
 
-                this.rings[i].phase = this.getRandom() * 2 * Math.PI
-                this.rings[i].volume = -Math.round(100 * this.getRandom() * 30) / 100 - 5
+                if (phase == true)
+                    this.rings[i].phase = this.getRandom() * 2 * Math.PI
+                else
+                    this.rings[i].phase = 0
+
+                if (volume == true)
+                    this.rings[i].volume = -Math.round(100 * this.getRandom() * 30) / 100
+                else
+                    this.rings[i].volume = 0
 
                 this.selectedRandomRings = null;
                 this.selectedRandomProbability = null;
@@ -484,9 +491,9 @@ var app = new Vue({
                 if (this.rings[i].pattern[step] > 0 && step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
                     if (this.rings[i].pattern[step] == 1)
-                        this.gains[i].volume.value = this.rings[i].volume - 5
+                        this.gains[i].volume.value = this.rings[i].volume - 10
                     else if (this.rings[i].pattern[step] == 2)
-                        this.gains[i].volume.value = this.rings[i].volume
+                        this.gains[i].volume.value = this.rings[i].volume - 5
                     this.players[i].start();
                 } else if (step != this.rings[i].lastStep) {
                     this.rings[i].lastStep = step;
@@ -541,7 +548,7 @@ var app = new Vue({
             if (volume > 0)
                 return
 
-            this.rings[ring].volume = volume - 5
+            this.rings[ring].volume = volume
         },
 
         changeRingInstrument: function(ring, instrument) {
@@ -572,7 +579,7 @@ var app = new Vue({
                 this.rings[this.selectedRing - 1].instrument
             ];
             this.selectedColor = this.rings[this.selectedRing - 1].color;
-            this.selectedVolume = this.rings[this.selectedRing - 1].volume + 5;
+            this.selectedVolume = this.rings[this.selectedRing - 1].volume;
         },
 
         deleteRing: function(event, ring) {
