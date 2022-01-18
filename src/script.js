@@ -362,7 +362,7 @@ var app = new Vue({
 
             this.lastStep = -1;
             this.phase = 0;
-            this.volume = -5
+            this.volume = 0
 
             for (var i = 0; i < steps; ++i) this.pattern.push(0);
         },
