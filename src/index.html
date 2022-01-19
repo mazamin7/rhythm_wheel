@@ -52,7 +52,7 @@
                 </b-button>
             </div>
             <div class="speed-container">
-                <b-form-input class="speed-slider" type="range" v-model="speed" min="1" max="100"></b-form-input>
+                <input class="speed-slider" type="range" v-model="speed" min="1" max="100"></input>
                 <label style="margin-top: 4px; margin-bottom: 10px;">RPM : {{speed}}</label>
             </div>
         </div>
@@ -222,7 +222,7 @@
             </div>
             <div class="menu-option-container">
                 <label>Volume : {{Math.round(selectedVolume*2)/2}} dB</label>
-                <b-form-input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" step="0.5" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></b-form-input>
+                <input class="speed-slider select" :disabled="selectedRing == null" type="range" v-model="selectedVolume" min="-30" max="0" step="0.5" v-on:change="changeRingVolume(selectedRing - 1, selectedVolume)"></input>
             </div>
         </div>
         <div class="canvas-container" >
