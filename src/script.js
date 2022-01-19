@@ -416,7 +416,7 @@ var app = new Vue({
         wheel_mouse: function(e) {
             var target = e.currentTarget;
             var mousePos = this.getMousePos(target, e);
-            var amount = -e.deltaY / 1000;
+            var amount = -e.deltaY / 1000 * Math.PI / 16;
 
             this.rotateRings(mousePos, amount);
         },
