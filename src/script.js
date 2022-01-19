@@ -718,7 +718,7 @@ var app = new Vue({
 
             if (this.rings.length > 0) {
                 this.drawRings();
-                this.drawHand(this.center, this.currentDegree, maxRadius, 10);
+                this.drawHand(this.center, this.currentDegree, maxRadius, 6);
             }
 
             window.requestAnimationFrame(app.draw);
