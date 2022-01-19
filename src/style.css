@@ -47,6 +47,10 @@ label {
     margin: 2px 20px;
 }
 
+.selected-ring-options:hover{
+    box-shadow: 1px 1px;
+}
+
 .buttons-container {
     display: flex;
     justify-content: center;
@@ -61,6 +65,10 @@ label {
     margin: 2px 20px;
 }
 
+.buttons-and-speed-container:hover{
+    box-shadow: 1px 1px;
+}
+
 .new-container{
     display: flex;
     justify-content: center;
@@ -68,6 +76,14 @@ label {
     background-color:rgb(223, 242, 253);
     border : 0.1px solid #aaa;
     border-radius : 20px;
+}
+
+.new-container:hover{
+    box-shadow: 1px 1px;
+}
+
+.menu-container:hover{
+    box-shadow : 1px 1px;
 }
 
 .menu-container {
@@ -79,6 +95,7 @@ label {
     margin: 2px 20px;
 }
 
+/*
 .canvas-container {
     position: absolute;
     display: flex;
@@ -87,6 +104,24 @@ label {
     height: 700px;
     left: 50%;
     transform: translate(-50%);
+}*/
+
+.canvas-container{
+    display: flex;
+    justify-content: center;
+}
+
+#canvas{
+    background-color:rgb(223, 242, 253);
+    border : 0.1px solid #aaa;
+    border-radius : 20px;
+    margin: 2px 20px 20px 20px;
+    width : 700px;
+    height: 700px;
+}
+
+#canvas:hover{
+    box-shadow : 1px 1px;
 }
 
 button {
