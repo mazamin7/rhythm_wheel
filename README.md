@@ -50,6 +50,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+	<li><a href="#running">Running</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -105,6 +106,17 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
+   
+### Running
+
+1. Go to the repository directory
+   ```sh
+   cd rhythm_wheel
+   ```
+2. Start the server
+   ```sh
+   npm start
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -113,10 +125,17 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+REPRESENTING THE RHYTHM
 In order to fill a step, you have to click once on the desired location.<br/>
-Click once again to mark the step as accented.<br/>
+Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
-The user can ask the application to generate a random rhythm on-the-fly; it's also possible to configure the randomization settings.<br/>
+
+SAVING/LOADING THE RHYTHM
+The user can store and load his rhythmic patterns on the cloud.<br/>
+
+GENERATING A RANDOM RHYTHM
+The user can ask the application to generate a random rhythm on-the-fly.
+Randomization settings are customizable.<br/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
