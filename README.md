@@ -13,10 +13,10 @@
   <a href="https://github.com/mazamin7/rhythm_wheel">
     <img src="src/resources/images/project_title.png" alt="Project title">
   </a>
-<br />
   <a href="https://github.com/mazamin7/rhythm_wheel">
     <img src="src/resources/images/logo.png" alt="Logo" width="160" height="160">
   </a>
+</div>
 
 <h3 align="center">Rhythm Wheel</h3>
   <p align="center">
@@ -31,7 +31,7 @@
     ·
     <a href="https://github.com/mazamin7/rhythm_wheel/issues">Request Feature</a>
   </p>
-</div>
+</h3>
 
 <!-- TABLE OF CONTENTS -->
 <details>
