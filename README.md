@@ -16,13 +16,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/mazamin7/rhythm_wheel">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/resources/images/logo.png" alt="Logo" width="160" height="160">
   </a>
 
 <h3 align="center">Rhythm Wheel</h3>
 
   <p align="center">
-    project_description
+    An easier way to visualize and represent rhythms
     <br />
     <a href="https://github.com/mazamin7/rhythm_wheel"><strong>Explore the docs »</strong></a>
     <br />
@@ -68,7 +68,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `project_description`
+In this project we have developed a rhythm wheel, that is a drum machine that has a simpler way to represent the rhythm. In fact in standard notation, rhythm is indicated on a musical bar line. This thing most of the time can be hard to visualize and represent; in order to solve this problem we thought of a better way to do the same thing. <br />
+
+We had a simple idea: just as a clock can trace the linear passage of time, the flow of rhythm can be traced in a circle; in this way the rhythm is easier to visualize and it’s easier to represent its repetition through time. <br />
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
