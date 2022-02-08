@@ -1,31 +1,20 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-
-
 <!-- PROJECT LOGO -->
+   __ _           _   _                          _               _ 
+  /__\ |__  _   _| |_| |__  _ __ ___   __      _| |__   ___  ___| |
+ / \// '_ \| | | | __| '_ \| '_ ` _ \  \ \ /\ / / '_ \ / _ \/ _ \ |
+/ _  \ | | | |_| | |_| | | | | | | | |  \ V  V /| | | |  __/  __/ |
+\/ \_/_| |_|\__, |\__|_| |_|_| |_| |_|   \_/\_/ |_| |_|\___|\___|_|
+            |___/                                                  
+
 <br />
 <div align="center">
   <a href="https://github.com/mazamin7/rhythm_wheel">
@@ -47,8 +36,6 @@
     <a href="https://github.com/mazamin7/rhythm_wheel/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -83,22 +70,18 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `mazamin7`, `rhythm_wheel`, `email`, `email_client`, `Rhythm Wheel`, `project_description`
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 ### Built With
 
 * [Vue.js](https://vuejs.org/)
-* [Tone.js](https://???)
-* [BootstrapVue](https://???)
-* [Firestore](https://???)
+* [Tone.js](https://tonejs.github.io/)
+* [BootstrapVue](https://bootstrap-vue.org/)
+* [Firestore](https://firebase.google.com/docs/firestore)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -139,33 +122,23 @@ The user can ask the application to generate a random rhythm on-the-fly; it's al
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+<!-- FEATURES -->
+## Features
 	
-	-The user can choose the number of beats/steps for each ring.<br/>
--A step can be stressed or unstressed (support for accents).<br/>
--It is possible to describe polyrhythms (the rings can have a different number of steps).<br/>
--The user can change the color of the rings. Stressed beats are characterized by a darker colour.<br/>
--The user can select the musical instrument thanks to a drop-down menu.<br/>
--There's a big collection of instrument samples.<br/>
--For each ring it is possible to change the phase delay (steer the ring).<br/>
--The user can set the volume of each ring and the RPM with the dedicated sliders.<br/>
--The user can save and load rhythmic patterns.<br/>
--The application can generate a random pattern.<br/>
--The application can generate random numbers starting from environmental noise.<br/>
-
-See the [open issues](https://github.com/mazamin7/rhythm_wheel/issues) for a full list of proposed features (and known issues).
+- [ ] Different number of beats/steps for each ring<br/>
+- [ ] Support for accents (a step can be stressed or unstressed)<br/>
+- [ ] Support for polyrhythms<br/>
+- [ ] Ring color is customizable<br/>
+- [ ] Instrument selectable by the user<br/>
+	- [ ] Big collection of instrument samples<br/>
+- [ ] Phase delay controller by the user (steer the ring).<br/>
+- [ ] The RPM can be controlled by the user<br/>
+- [ ] The volume can be controlled by the user<br/>
+- [ ] Rhythmic patterns can be loaded and saved on the cloud<br/>
+- [ ] Generation a random pattern<br/>
+	- [ ] Generation of random numbers starting from environmental noise<br/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- LICENSE -->
 ## License
@@ -173,8 +146,6 @@ See the [open issues](https://github.com/mazamin7/rhythm_wheel/issues) for a ful
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -188,8 +159,6 @@ Project Link: [https://github.com/mazamin7/rhythm_wheel](https://github.com/maza
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
@@ -198,8 +167,6 @@ Project Link: [https://github.com/mazamin7/rhythm_wheel](https://github.com/maza
 * []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
