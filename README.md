@@ -120,17 +120,17 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-REPRESENTING THE RHYTHM<br/>
+### Creating the rhythm
 In order to fill a step, you have to click once on the desired location.<br/>
 Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
 <img src="src/resources/images/case_of_use_1.gif" alt="First case of use">
 
-SAVING/LOADING THE RHYTHM<br/>
+### Saving/loading on the cloud
 The user can store and load his rhythmic patterns on the cloud.<br/>
 <img src="src/resources/images/case_of_use_2.gif" alt="Second case of use">
 
-GENERATING A RANDOM RHYTHM<br/>
+### Generating a random rhythm
 The user can ask the application to generate a random rhythm on-the-fly.
 Randomization settings are customizable.<br/>
 <img src="src/resources/images/case_of_use_3.gif" alt="Third case of use">
