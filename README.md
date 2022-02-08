@@ -124,7 +124,7 @@ This is an example of how to list things you need to use the software and how to
 In order to fill a step, you have to click once on the desired location.<br/>
 Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
-<img src="https://github.com/mazamin7/rhythm_wheel/blob/main/src/resources/images/case_of_use_1.gif"/>
+<img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_1.gif"/>
 
 ### Saving/loading on the cloud
 The user can store and load his rhythmic patterns on the cloud.<br/>
