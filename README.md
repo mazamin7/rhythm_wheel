@@ -125,35 +125,38 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-REPRESENTING THE RHYTHM
+REPRESENTING THE RHYTHM<br/>
 In order to fill a step, you have to click once on the desired location.<br/>
 Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
+<img src="src/resources/images/case_of_use_1.png" alt="First case of use">
 
-SAVING/LOADING THE RHYTHM
+SAVING/LOADING THE RHYTHM<br/>
 The user can store and load his rhythmic patterns on the cloud.<br/>
+<img src="src/resources/images/case_of_use_2.png" alt="Second case of use">
 
-GENERATING A RANDOM RHYTHM
+GENERATING A RANDOM RHYTHM<br/>
 The user can ask the application to generate a random rhythm on-the-fly.
 Randomization settings are customizable.<br/>
+<img src="src/resources/images/case_of_use_3.png" alt="Third case of use">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- FEATURES -->
 ## Features
 	
-- [ ] Different number of beats/steps for each ring<br/>
-- [ ] Support for accents (a step can be stressed or unstressed)<br/>
-- [ ] Support for polyrhythms<br/>
-- [ ] Ring color is customizable<br/>
-- [ ] Instrument selectable by the user<br/>
-	- [ ] Big collection of instrument samples<br/>
-- [ ] Phase delay controller by the user (steer the ring).<br/>
-- [ ] The RPM can be controlled by the user<br/>
-- [ ] The volume can be controlled by the user<br/>
-- [ ] Rhythmic patterns can be loaded and saved on the cloud<br/>
-- [ ] Generation a random pattern<br/>
-	- [ ] Generation of random numbers starting from environmental noise<br/>
+- [✓] Different number of beats/steps for each ring<br/>
+- [✓] Support for accents (a step can be stressed or unstressed)<br/>
+- [✓] Support for polyrhythms<br/>
+- [✓] Ring color is customizable<br/>
+- [✓] Instrument selectable by the user<br/>
+	- [✓] Big collection of instrument samples<br/>
+- [✓] Phase delay controller by the user (steer the ring).<br/>
+- [✓] The RPM can be controlled by the user<br/>
+- [✓] The volume can be controlled by the user<br/>
+- [✓] Rhythmic patterns can be loaded and saved on the cloud<br/>
+- [✓] Generation a random pattern<br/>
+	- [✓] Generation of random numbers starting from environmental noise<br/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
