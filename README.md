@@ -8,13 +8,11 @@
 [![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
-   __ _           _   _                          _               _ <br />
-  /__\ |__  _   _| |_| |__  _ __ ___   __      _| |__   ___  ___| |<br />
- / \// '_ \| | | | __| '_ \| '_ ` _ \  \ \ /\ / / '_ \ / _ \/ _ \ |<br />
-/ _  \ | | | |_| | |_| | | | | | | | |  \ V  V /| | | |  __/  __/ |<br />
-\/ \_/_| |_|\__, |\__|_| |_|_| |_| |_|   \_/\_/ |_| |_|\___|\___|_|<br />
-            |___/                                                  <br />
-
+<br />
+<div align="center">
+  <a href="https://github.com/mazamin7/rhythm_wheel">
+    <img src="resources/images/project_title.png" alt="Logo" width="80" height="80">
+  </a>
 <br />
 <div align="center">
   <a href="https://github.com/mazamin7/rhythm_wheel">
