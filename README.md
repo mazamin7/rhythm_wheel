@@ -160,14 +160,14 @@ Randomization settings are customizable.<br/>
 Our rhythm wheel is an array of rings.<br/>
 Each ring is described by the following properties.<br/>
 Rhythmic properties:
-<li>Number of steps</li>
-<li>Rhythmic pattern</li>
-<li>Phase</li>
+-Number of steps
+-Rhythmic pattern
+-Phase
 Sound properties:
-<li>Instrument</li>
-<li>Volume</li>
+-Instrument
+-Volume
 Graphic properties:
-<li>Color</li>
+-Color
 
 ### Environmental noise RNG
 Our RNG takes environmental noise as an input  and, after some computations, it outputs a true random number. <br/>
@@ -175,30 +175,31 @@ It’s not about safety or privacy, we just wanted to create a connection betwee
 <img src="src/resources/images/diagram_block.png" alt="Diagram block">
 
 ### Main subroutines
-Ring phase delay task:
-<li>Choose the ring to be rotated with respect to the mouse position</li>
-<li>Increment the phase of the chosen ring according to the mouse wheel</li>
-
-Clock hand rotation task:
-<li>Periodically increment degrees (modulo 2π)</li>
-
-Sound play task:
-<li>For each ring, convert current degree to step number</li>
-<li>If the step is filled, play sound</li>
-
-Draw graphics task:
-<li>Draw clock hand, rings and steps with Canvas</li>
-
-RNG task:
-<li>When the pool is not full</li>
-<li>Record sound with microphone</li>
-<li>Manipulate samples to output a random number</li>
-<li>Put the random number in the pool</li>
-
-Database sync task:
-<li>When the database content changes, update the model</li>
-<li>When the model changes, update the database</li>
-
+Ring phase delay task:<br/>
+-Choose the ring to be rotated with respect to the mouse position<br/>
+-Increment the phase of the chosen ring according to the mouse wheel<br/>
+<br/>
+Clock hand rotation task:<br/>
+-Periodically increment degrees (modulo 2π)<br/>
+<br/>
+Sound play task:<br/>
+-For each ring<br/>
+	-Convert current degree to step number<br/>
+	-If the step is filled, play sound<br/>
+<br/>
+Draw graphics task:<br/>
+-Draw clock hand, rings and steps with Canvas<br/>
+<br/>
+RNG task:<br/>
+-When the pool is not full<br/>
+	-Record sound with microphone<br/>
+	-Manipulate samples to output a random number<br/>
+	-Put the random number in the pool<br/>
+<br/>
+Database sync task:<br/>
+-When the database content changes, update the model<br/>
+-When the model changes, update the database<br/>
+<br/>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
