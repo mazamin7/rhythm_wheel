@@ -25,7 +25,7 @@
     <a href="https://github.com/mazamin7/rhythm_wheel"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/mazamin7/rhythm_wheel">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=3YUWU_Ernf4">View Demo</a>
     ·
     <a href="https://github.com/mazamin7/rhythm_wheel/issues">Report Bug</a>
     ·
@@ -124,16 +124,16 @@ This is an example of how to list things you need to use the software and how to
 In order to fill a step, you have to click once on the desired location.<br/>
 Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
-<img src="src/resources/images/case_of_use_1.gif" alt="First case of use">
+![First case of use](src/resources/images/case_of_use_1.gif)
 
 ### Saving/loading on the cloud
 The user can store and load his rhythmic patterns on the cloud.<br/>
-<img src="src/resources/images/case_of_use_2.gif" alt="Second case of use">
+![Second case of use](src/resources/images/case_of_use_2.gif)
 
 ### Generating a random rhythm
 The user can ask the application to generate a random rhythm on-the-fly.
 Randomization settings are customizable.<br/>
-<img src="src/resources/images/case_of_use_3.gif" alt="Third case of use">
+![Third case of use](src/resources/images/case_of_use_3.gif)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
