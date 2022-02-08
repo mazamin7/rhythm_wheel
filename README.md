@@ -152,6 +152,27 @@ Randomization settings are customizable.<br/>
 - [✓] Rhythmic patterns can be loaded and saved on the cloud<br/>
 - [✓] Generation a random pattern<br/>
 	- [✓] Generation of random numbers starting from environmental noise<br/>
+	
+<!-- INDEPTH -->
+## In-depth analysis
+
+### Ring class
+Our rhythm wheel is an array of rings.<br/>
+Each ring is described by the following properties.<br/>
+Rhythmic properties:
+<li>Number of steps</li>
+<li>Rhythmic pattern</li>
+<li>Phase</li>
+Sound properties:
+<li>Instrument</li>
+<li>Volume</li>
+Graphic properties:
+<li>Color</li>
+
+### Environmental noise RNG
+Our RNG takes environmental noise as an input  and, after some computations, it outputs a true random number. <br/>
+It’s not about safety or privacy, we just wanted to create a connection between noise (random sounds pressure fluctuations) and music (meaningful sounds).<br/>
+<img src="src/resources/images/diagram_block.png" alt="Diagram block">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
