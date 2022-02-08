@@ -48,9 +48,9 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+		<li><a href="#running">Running</a></li>
       </ul>
     </li>
-	<li><a href="#running">Running</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#license">License</a></li>
@@ -124,16 +124,16 @@ REPRESENTING THE RHYTHM<br/>
 In order to fill a step, you have to click once on the desired location.<br/>
 Click once again to mark the step as accented.
 Click one more time and it’s removed.<br/>
-<img src="src/resources/images/case_of_use_1.png" alt="First case of use">
+<img src="src/resources/images/case_of_use_1.gif" alt="First case of use">
 
 SAVING/LOADING THE RHYTHM<br/>
 The user can store and load his rhythmic patterns on the cloud.<br/>
-<img src="src/resources/images/case_of_use_2.png" alt="Second case of use">
+<img src="src/resources/images/case_of_use_2.gif" alt="Second case of use">
 
 GENERATING A RANDOM RHYTHM<br/>
 The user can ask the application to generate a random rhythm on-the-fly.
 Randomization settings are customizable.<br/>
-<img src="src/resources/images/case_of_use_3.png" alt="Third case of use">
+<img src="src/resources/images/case_of_use_3.gif" alt="Third case of use">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
