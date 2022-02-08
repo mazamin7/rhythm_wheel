@@ -128,12 +128,12 @@ Click one more time and it’s removed.<br/>
 
 ### Saving/loading on the cloud
 The user can store and load his rhythmic patterns on the cloud.<br/>
-![Second case of use](https://github.com/mazamin7/rhythm_wheel/blob/main/src/resources/images/case_of_use_2.gif)
+<img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_2.gif"/>
 
 ### Generating a random rhythm
 The user can ask the application to generate a random rhythm on-the-fly.
 Randomization settings are customizable.<br/>
-![Third case of use](https://github.com/mazamin7/rhythm_wheel/blob/main/src/resources/images/case_of_use_3.gif)
+<img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_3.gif"/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
