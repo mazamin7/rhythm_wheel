@@ -67,7 +67,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/3YUWU_Ernf4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![video](https://img.youtube.com/vi/3YUWU_Ernf4/0.jpg)](https://www.youtube.com/watch?v=3YUWU_Ernf4)
 
 In this project we have developed a rhythm wheel, that is a drum machine that has a simpler way to represent the rhythm. In fact in standard notation, rhythm is indicated on a musical bar line. This thing most of the time can be hard to visualize and represent; in order to solve this problem we thought of a better way to do the same thing. <br />
 
