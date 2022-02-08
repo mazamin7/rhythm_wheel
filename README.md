@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/mazamin7/rhythm_wheel">
-    <img src="resources/images/project_title.png" alt="Logo" width="80" height="80">
+    <img src="src/resources/images/project_title.png" alt="Logo" width="80" height="80">
   </a>
 <br />
 <div align="center">
