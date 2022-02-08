@@ -174,6 +174,31 @@ Our RNG takes environmental noise as an input  and, after some computations, it 
 It’s not about safety or privacy, we just wanted to create a connection between noise (random sounds pressure fluctuations) and music (meaningful sounds).<br/>
 <img src="src/resources/images/diagram_block.png" alt="Diagram block">
 
+### Main subroutines
+Ring phase delay task:
+<li>Choose the ring to be rotated with respect to the mouse position</li>
+<li>Increment the phase of the chosen ring according to the mouse wheel</li>
+
+Clock hand rotation task:
+<li>Periodically increment degrees (modulo 2π)</li>
+
+Sound play task:
+<li>For each ring, convert current degree to step number</li>
+<li>If the step is filled, play sound</li>
+
+Draw graphics task:
+<li>Draw clock hand, rings and steps with Canvas</li>
+
+RNG task:
+<li>When the pool is not full</li>
+<li>Record sound with microphone</li>
+<li>Manipulate samples to output a random number</li>
+<li>Put the random number in the pool</li>
+
+Database sync task:
+<li>When the database content changes, update the model</li>
+<li>When the model changes, update the database</li>
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- LICENSE -->
