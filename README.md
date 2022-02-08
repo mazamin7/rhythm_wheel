@@ -91,14 +91,10 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
 * [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Tone.js](https://???)
+* [BootstrapVue](https://???)
+* [Firestore](https://???)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -136,9 +132,10 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+In order to fill a step, you have to click once on the desired location.<br/>
+Click once again to mark the step as accented.<br/>
+Click one more time and it’s removed.<br/>
+The user can ask the application to generate a random rhythm on-the-fly; it's also possible to configure the randomization settings.<br/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -151,6 +148,18 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 2
 - [ ] Feature 3
     - [ ] Nested Feature
+	
+	-The user can choose the number of beats/steps for each ring.<br/>
+-A step can be stressed or unstressed (support for accents).<br/>
+-It is possible to describe polyrhythms (the rings can have a different number of steps).<br/>
+-The user can change the color of the rings. Stressed beats are characterized by a darker colour.<br/>
+-The user can select the musical instrument thanks to a drop-down menu.<br/>
+-There's a big collection of instrument samples.<br/>
+-For each ring it is possible to change the phase delay (steer the ring).<br/>
+-The user can set the volume of each ring and the RPM with the dedicated sliders.<br/>
+-The user can save and load rhythmic patterns.<br/>
+-The application can generate a random pattern.<br/>
+-The application can generate random numbers starting from environmental noise.<br/>
 
 See the [open issues](https://github.com/mazamin7/rhythm_wheel/issues) for a full list of proposed features (and known issues).
 
