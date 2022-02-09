@@ -133,7 +133,7 @@ In this brief gif animation you can see how all this process works.<br/>
 ### Saving/loading on the cloud
 The user can store and load his rhythmic patterns, because our application is connected to the cloud; this allows the user to generate a rhythm and then save it in the database, or upload a rhythm that he has created in the last session.<br/>
 For doing this we use the Firebase technology, which allows us to make the connection from the application to a NoSql Database stored in the cloud. That makes of course the application stateful.<br/>
-In this brief gif animation you can see how all this process works.<br/>
+In this brief gif animation you can see how all this process works.<br/><br/>
 
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_2.gif"/>
 
