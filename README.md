@@ -131,8 +131,17 @@ The user can store and load his rhythmic patterns on the cloud.<br/>
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_2.gif"/>
 
 ### Generating a random rhythm
-The user can ask the application to generate a random rhythm on-the-fly.
-Randomization settings are customizable.<br/>
+One of the functionalities of our app is that it can generate a random rhythm on-the-fly. For doing that the user is required to insert a list of 4 parameters that are used from the algorithm to generate the random polyrhythm. These 4 parameters are:
+<ul>
+<li>The number of rings that have to be in the polyrhythm</li>
+<li>The step filling probability</li>
+<li>If the user wants or not to randomize the volume for each ring</li>
+<li>If the user wants or not to randomize the phase for each ring (so in practice the rotation of the ring).</li>
+</ul>
+We can notice that the probability goes from 0 to 1.
+In this brief gif animation you can see how it works.
+
+<br/>
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_3.gif"/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
