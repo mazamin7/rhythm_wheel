@@ -110,7 +110,11 @@ We don’t have dots, but steps, making the web app easier to use with a mouse.<
    ```sh
    cd rhythm_wheel
    ```
-3. Start the server
+3. ONLY FIRST BOOT - Install npm
+   ```sh
+   npm install
+   ```
+4. Start the server
    ```sh
    npm start
    ```
