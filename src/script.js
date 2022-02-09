@@ -57,6 +57,7 @@ import snare0 from 'url:./resources/audio/909/909-Snare-T0T0S0.wav';
 import snare1 from 'url:./resources/audio/909/909-Snare-T0T0S3.wav';
 import snare2 from 'url:./resources/audio/909/909-Snare-T0T0S7.wav';
 import snare3 from 'url:./resources/audio/909/909-Snare-T0T0SA.wav';
+import snare4 from 'url:./resources/audio/909/909-Snare-T0T0SA.wav';
 
 
 
