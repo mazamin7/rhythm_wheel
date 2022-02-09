@@ -46,13 +46,24 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
 		<li><a href="#running">Running</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+		<ul>
+		<li><a href="#creating-the-rhythm">Creating the rhythm</a></li>
+		<li><a href="#savingloading-on-the-cloud">Saving/loading on the cloud</a></li>
+		<li><a href="#generating-a-random-rhythm">Generating a random rhythm</a></li>
+      </ul>
     <li><a href="#features">Features</a></li>
+	<li><a href="#in-depth-analysis">In-depth analysis</a></li>
+	<ul>
+		<li><a href="#architecture">Architecture</a></li>
+		<li><a href="#polyrhytms">Polyrhytms</a></li>
+		<li><a href="#ring-class">Ring class</a></li>
+		<li><a href="#environmental-noise-RNG">Environmental noise RNG</a></li>
+		<li><a href="#main-subroutines">Main subroutines</a></li>
+      </ul>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -67,7 +78,13 @@
 
 In this project we have developed a rhythm wheel, that is a drum machine that has a simpler way to represent the rhythm. In fact in standard notation, rhythm is indicated on a musical bar line. This thing most of the time can be hard to visualize and represent; in order to solve this problem we thought of a better way to do the same thing. <br />
 
-We had a simple idea: just as a clock can trace the linear passage of time, the flow of rhythm can be traced in a circle; in this way the rhythm is easier to visualize and it’s easier to represent its repetition through time. <br />
+We had a simple idea: just as a clock can trace the linear passage of time, the flow of rhythm can be traced in a circle; in this way the rhythm is easier to visualize and it’s easier to represent its repetition through time.<br />
+
+Our main goal is to make the experience of describing a rhythm as effortless as possible!
+The user just needs to use the mouse and his creativity.<br />
+That’s why we have chosen to restyle the rhythm wheel.
+We don’t have dots, but steps, making the web app easier to use with a mouse.<br />
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -83,32 +100,17 @@ We had a simple idea: just as a clock can trace the linear passage of time, the 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Prerequisites
+### Running
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
+1. Start with cloning this repo on your local machine:
    ```sh
    git clone https://github.com/mazamin7/rhythm_wheel.git
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-   
-### Running
-
-1. Go to the repository directory
+2. Go to the repository directory
    ```sh
    cd rhythm_wheel
    ```
-2. Start the server
+3. Start the server
    ```sh
    npm start
    ```
@@ -169,6 +171,15 @@ In this brief gif animation you can see how it works.
 	
 <!-- INDEPTH -->
 ## In-depth analysis
+
+### Architecture
+<img src="src/resources/images/arch.png" alt="Architecture" width="800" height="370">
+
+### Polyrhytms
+What is a polyrhythm? A polyrhythm is the simultaneous use of more rhythms that cannot be expressed simply within the same meter. <br/>
+Why is our rhythm wheel compatible with polyrhythms? In our rhythm wheel, each wheel can have a different number of steps. <br/>
+Why can't I place the steps freely? We didn't want to lose the train of pulses common to other rhythm notations. With our rhythm wheel, you can eat the cake and keep it! <br/>
+
 
 ### Ring class
 Our rhythm wheel is an array of rings.<br/>
