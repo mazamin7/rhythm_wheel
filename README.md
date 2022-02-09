@@ -131,13 +131,13 @@ In order to fill a step, you have to click once on the desired location.<br/>
 There is also the possibility to give the accent to a specific step; in order to do this you have to click once again to mark the step as accented.<br/>
 For remove the step you have simplt to click one more time and then it’s removed.<br/>
 Another important thing is the fact that with the wheel of the mouse, in combination with the hover of the mouse, is possible to rotate the steps. This is particullary relevant in order to create some irregular rhythms.<br/>
-In this brief gif animation you can see how all this process works.
+In this brief gif animation you can see how all this process works.<br/><br/>
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_1.gif" width="400" height="300"/>
 
 ### Saving/loading on the cloud
 The user can store and load his rhythmic patterns, because our application is connected to the cloud; this allows the user to generate a rhythm and then save it in the database, or upload a rhythm that he has created in the last session.<br/>
 For doing this we use the Firebase technology, which allows us to make the connection from the application to a NoSql Database stored in the cloud. That makes of course the application stateful.<br/>
-In this brief gif animation you can see how all this process works.
+In this brief gif animation you can see how all this process works.<br/><br/>
 
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_2.gif"/>
 
@@ -152,7 +152,7 @@ One of the functionalities of our app is that it can generate a random rhythm on
 We can notice that the probability goes from 0 to 1.
 In this brief gif animation you can see how it works.
 
-<br/>
+<br/><br/>
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_3.gif"/>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
