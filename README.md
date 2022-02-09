@@ -158,7 +158,7 @@ In this brief gif animation you can see how it works.
 ## In-depth analysis
 
 ### Architecture
-<img src="src/resources/images/arch.png" alt="Architecture" width="700" height="400">
+<img src="src/resources/images/arch.png" alt="Architecture" width="800" height="350">
 
 ### Polyrhytms
 What is a polyrhythm? A polyrhythm is the simultaneous use of more rhythms that cannot be expressed simply within the same meter. <br/>
