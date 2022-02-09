@@ -50,7 +50,20 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+		<ul>
+		<li><a href="#Creating the rhythm">Creating the rhythm</a></li>
+		<li><a href="#Saving/loading on the cloud">Saving/loading on the cloud</a></li>
+		<li><a href="#Generating a random rhythm">Generating a random rhythm</a></li>
+      </ul>
     <li><a href="#features">Features</a></li>
+	<li><a href="#In-depth analysis">In-depth analysis</a></li>
+	<ul>
+		<li><a href="#Architecture">Architecture</a></li>
+		<li><a href="#Polyrhytms">Polyrhytms</a></li>
+		<li><a href="#Ring class">Ring class</a></li>
+		<li><a href="#Environmental noise RNG">Environmental noise RNG</a></li>
+		<li><a href="#Main subroutines">Main subroutines</a></li>
+      </ul>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
