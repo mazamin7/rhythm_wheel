@@ -122,8 +122,10 @@ This is an example of how to list things you need to use the software and how to
 
 ### Creating the rhythm
 In order to fill a step, you have to click once on the desired location.<br/>
-Click once again to mark the step as accented.
-Click one more time and it’s removed.<br/>
+There is also the possibility to give the accent to a specific step; in order to do this you have to click once again to mark the step as accented.<br/>
+For remove the step you have simplt to click one more time and then it’s removed.<br/>
+Another important thing is the fact that with the wheel of the mouse, in combination with the hover of the mouse, is possible to rotate the steps. This is particullary relevant in order to create some irregular rhythms.<br/>
+In this brief gif animation you can see how all this process works.
 <img src="https://github.com/mazamin7/rhythm_wheel/raw/main/src/resources/images/case_of_use_1.gif" width="400" height="300"/>
 
 ### Saving/loading on the cloud
