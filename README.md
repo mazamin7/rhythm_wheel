@@ -21,9 +21,6 @@
 <h3 align="center">Rhythm Wheel</h3>
   <p align="center">
     An easier way to visualize and represent rhythms<br />
-    Give it a try!<br />
-    <a href="http://yournotes.altervista.org/"><strong>Hosted website »</strong></a>
-    <br />
     <a href="https://github.com/mazamin7/rhythm_wheel"><strong>Explore the docs »</strong></a>
     <br />
     <br />
